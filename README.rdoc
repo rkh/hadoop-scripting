@@ -1,0 +1,15 @@
+== downloading some sample data
+
+run only once:
+
+  sudo gem install curb
+  git submodule init
+		
+
+run to download some wikipedia articles:
+  
+  rake get_data:wikipedia
+		
+download 10 MB to data/foo
+
+  rake get_data:wikipedia MB=10 FILE=data/foo
