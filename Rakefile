@@ -4,26 +4,45 @@ $:.unshift(*Dir["vendor/*/lib"])
 MAX_SIZE = ENV["BYTES"] ? ENV["BYTES"].to_i : ENV["MB"] ? (ENV["MB"].to_i * 1024 * 1024) : ENV["KB"] ? (ENV["KB"].to_i * 1024) : 1024 * 1024
 FILE = ENV["FILE"]
 
+require "mw_api"
+
+def announce(text)
+  $stderr << text
+end
+
 namespace :get_data do
   
-  desc "Download some articles from Wikipedia."
-  task :wikipedia do
-    require "mw_api"
-    File.open(FILE || "data/wikipedia", "w") do |f|
-      wiki, size = MediaWiki.wikipedia, 0
-      $stderr.puts "downloading #{MAX_SIZE} bytes" 
-      wiki.allpages(:apfrom => :a) do |page|
-        break if size >= MAX_SIZE
-        $stderr.print "reading #{page["title"]}"
-        begin
-          size += f.write wiki.page_content(page["title"])
-        rescue Exception # fix me
-        end
-        $stderr.print " " * (60 - page["title"].length) if page["title"].length < 60
-        $stderr.puts " #{size * 100 / MAX_SIZE} % (#{size} of #{MAX_SIZE} Bytes)"
-      end
-      $stderr.puts "done"
+  namespace :wikipedia do
+    
+    def get_page(name)
+      text = @wiki.parse(:text => "{{:#{name}}}")["parse"]["text"]["*"]
+      text.gsub!(/ *(\n|\r)+ */, " ")
+      text.gsub!(/<[^>]*>/, "")
+      text << "\n"
     end
+    
+    task :setup do
+      @wiki = MediaWiki.wikipedia
+      @file = FILE || "data/wikipedia"
+      @size = 0
+    end
+    
+    task :download => :setup do
+      announce "downloading #{MAX_SIZE} bytes\n"
+      File.open(@file, "w") do |f|
+        @wiki.allpages(:apfrom => :a) do |page|
+          break if @size >= MAX_SIZE
+          announce "reading #{page["title"]}"
+          announce " " * (60 - page["title"].length) if page["title"].length < 60
+          @size += f.write(get_page(page["title"]))
+          announce " #{@size * 100 / MAX_SIZE} % (#{@size} of #{MAX_SIZE} Bytes)\n"
+        end
+      end
+      announce "done\n"
+    end
+    
   end
+  
+  task :wikipedia => "wikipedia:download"
   
 end
