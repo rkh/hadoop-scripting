@@ -15,10 +15,14 @@ namespace :get_data do
   namespace :wikipedia do
     
     def get_page(name)
-      text = @wiki.parse(:text => "{{:#{name}}}")["parse"]["text"]["*"]
-      text.gsub!(/ *(\n|\r)+ */, " ")
-      text.gsub!(/<[^>]*>/, "")
-      text << "\n"
+      begin
+        text = @wiki.parse(:text => "{{:#{name}}}")["parse"]["text"]["*"]
+        text.gsub!(/ *(\n|\r)+ */, " ")
+        text.gsub!(/<[^>]*>/, "")
+        text << "\n"
+      rescue Exception
+        ""
+      end
     end
     
     task :setup do
@@ -30,7 +34,7 @@ namespace :get_data do
     task :download => :setup do
       announce "downloading #{MAX_SIZE} bytes\n"
       File.open(@file, "w") do |f|
-        @wiki.allpages(:apfrom => :a) do |page|
+        @wiki.allpages(:apfrom => "Shakespear") do |page|
           break if @size >= MAX_SIZE
           announce "reading #{page["title"]}"
           announce " " * (60 - page["title"].length) if page["title"].length < 60
