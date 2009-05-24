@@ -6,14 +6,16 @@ $markovEntry = fn($words, $indexSize, $pos) (
 	{ index: $index, followedBy: $words[$pos] }
 );
 
-$markov = fn($line, $indexSize) (
+$markovLine = fn($line, $indexSize) (
 	$words   = splitString($line, " "),
 	$length  = ($words -> aggregate count($))[0],
 	$indices = range($indexSize, $length - 1),
 	$indices -> transform each $i $markovEntry($words, $indexSize, $i)
 );
 
-$from_file = fn($input) (
+$markov = fn($lines, $indexSize) ( $lines -> expand each $line $markovLine($line, $indexSize) );
+
+$fromFile = fn($input) (
 	hdfsShell("-copyFromLocal " + $input + " markov_input") * 0,
 	read({
 		type: "hdfs",
@@ -25,5 +27,7 @@ $from_file = fn($input) (
 	})
 );
 
-// $markov($from_file("data/wikipedia"), 3);
-$markov("How much wood would a wood chuck chuck if a would chuck would chuck wood?", 2);
+$fromString = fn($input) ( splitString($input, "\n") );
+
+// $markov($fromFile("data/wikipedia"), 3);
+$markov($fromString("How much wood would a wood chuck chuck if a would chuck would chuck wood?"), 2);
