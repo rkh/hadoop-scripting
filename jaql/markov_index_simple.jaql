@@ -1,0 +1,29 @@
+registerFunction("splitString", "com.acme.extensions.expr.SplitIterExpr");
+
+$markovEntry = fn($words, $indexSize, $pos) (
+	$index = range(0, $indexSize - 1)
+		-> transform each $i $words[$pos - $indexSize + $i],
+	{ index: $index, followedBy: $words[$pos] }
+);
+
+$markov = fn($line, $indexSize) (
+	$words   = splitString($line, " "),
+	$length  = ($words -> aggregate count($))[0],
+	$indices = range($indexSize, $length - 1),
+	$indices -> transform each $i $markovEntry($words, $indexSize, $i)
+);
+
+$from_file = fn($input) (
+	hdfsShell("-copyFromLocal " + $input + " markov_input") * 0,
+	read({
+		type: "hdfs",
+		location: "markov_input",
+		inoptions: {
+			format: "org.apache.hadoop.mapred.TextInputFormat",
+			converter: "com.acme.extensions.data.FromLineConverter"
+		}
+	})
+);
+
+// $markov($from_file("data/wikipedia"), 3);
+$markov("How much wood would a wood chuck chuck if a would chuck would chuck wood?", 2);
