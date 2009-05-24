@@ -1,0 +1,94 @@
+$people = [
+	{
+		name: 		'Johan Uhle',
+		blog:		'http://freenerd.de',
+		twitter:	'freenerd',
+		github:		'johanuhle',
+		seminars:	['Map/Reduce', 'Webdevelopment', 'VHDL'],
+		languages:	[
+			{ name: 'German',	knowledge: 5 },
+			{ name: 'English',	knowledge: 4 },
+			{ name: 'Polish',	knowledge: 4 },
+			{ name: 'Frensh',	knowledge: 2 }
+		]
+	},
+	{
+		name:		'Konstantin Haase',
+		blog:		'http://khaase.blogspot.com',
+		twitter:	'konstantinhaase',
+		github:		'rkh',
+		seminars:	['Map/Reduce', 'VHDL'],
+		languages:	[
+			{ name: 'German',	knowledge: 5 },
+			{ name: 'English',	knowledge: 4 },
+			{ name: 'Swedish',	knowledge: 4 },
+			{ name: 'Latin',	knowledge: 1 }
+		]
+	},
+	{
+		name:		'Tim Felgentreff',
+	 	blog:		'http://timfelgentreff.blogsopt.com',
+	 	twitter:	'timfelgentreff',
+	 	github:		'timfel',
+	 	seminars:	['Map/Reduce', 'History Of Programming Languages', 'VHDL'],
+		languages:	[
+			{ name: 'German',	knowledge: 5 },
+			{ name: 'English',	knowledge: 5 },
+			{ name: 'Frensh',	knowledge: 2 }
+		]
+	},
+	{
+		name:		'Johannes Wollert',
+		github:		'GarstgerUnholt',
+		seminars:	['Map/Reduce', 'History Of Programming Languages', 'VHDL'],
+		languages:	[
+			{ name: 'German',	knowledge: 5 },
+			{ name: 'English',	knowledge: 4 },
+			{ name: 'Frensh',	knowledge: 3 }
+		]
+	}
+
+];
+
+$people -> write(hdfs('people'));
+
+// names and github accounts
+read(hdfs('people')) -> transform { $.name, $.github };
+
+// names
+read(hdfs('people')) -> transform $.name;
+read(hdfs('people'))[*].name; // shorthand
+
+// names and twitter nicks for everybody using twitter
+read(hdfs('people'))
+-> filter exists($.twitter)
+-> transform { $.name, $.twitter };
+
+// names of those taking part in the Map/Reduce seminar
+read(hdfs('people'))
+-> filter 'Map/Reduce' in $.seminars
+-> transform $.name;
+
+// people speaking Frensh
+read(hdfs('people'))
+-> filter 'Frensh' in ($.languages[*].name)
+-> transform $.name;
+
+//
+// classic map/reduce
+//
+
+$knowledge_location =
+	read(hdfs('people'))[*].languages -> expand
+	-> write(hdfs("language_knowledge"));
+	
+$distribution_location = { type: 'hdfs', location: 'language_distribution' };
+
+mapReduce({
+	input:	$knowledge_location,
+	output:	$distribution_location,
+	map:	fn($v) ( $v -> transform [$.name, 1] ),
+	reduce:	fn($k, $v) ( $v -> aggregate {name: $k, speaker: count($)})
+});
+
+read($distribution_location) -> sort by [$.speaker desc] -> transform $.name;
