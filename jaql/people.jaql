@@ -40,7 +40,7 @@ $people = [
 	{
 		name:		'Johannes Wollert',
 		github:		'GarstgerUnholt',
-		seminars:	['Map/Reduce', 'History Of Programming Languages', 'VHDL'],
+		seminars:	['History Of Programming Languages', 'VHDL'],
 		languages:	[
 			{ name: 'German',	knowledge: 5 },
 			{ name: 'English',	knowledge: 4 },
