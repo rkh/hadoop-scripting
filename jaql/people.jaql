@@ -8,8 +8,8 @@ $people = [
 		languages:	[
 			{ name: 'German',	knowledge: 5 },
 			{ name: 'English',	knowledge: 4 },
-			{ name: 'Polish',	knowledge: 4 },
-			{ name: 'French',	knowledge: 2 }
+			{ name: 'Polish',	knowledge: 2 },
+			{ name: 'French',	knowledge: 1 }
 		]
 	},
 	{
