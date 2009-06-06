@@ -8,8 +8,8 @@ $people = [
 		languages:	[
 			{ name: 'German',	knowledge: 5 },
 			{ name: 'English',	knowledge: 4 },
-			{ name: 'Polish',	knowledge: 4 },
-			{ name: 'Frensh',	knowledge: 2 }
+			{ name: 'Polish',	knowledge: 2 },
+			{ name: 'French',	knowledge: 1 }
 		]
 	},
 	{
@@ -34,17 +34,17 @@ $people = [
 		languages:	[
 			{ name: 'German',	knowledge: 5 },
 			{ name: 'English',	knowledge: 5 },
-			{ name: 'Frensh',	knowledge: 2 }
+			{ name: 'French',	knowledge: 2 }
 		]
 	},
 	{
 		name:		'Johannes Wollert',
 		github:		'GarstgerUnholt',
-		seminars:	['Map/Reduce', 'History Of Programming Languages', 'VHDL'],
+		seminars:	['History Of Programming Languages', 'VHDL'],
 		languages:	[
 			{ name: 'German',	knowledge: 5 },
 			{ name: 'English',	knowledge: 4 },
-			{ name: 'Frensh',	knowledge: 3 }
+			{ name: 'French',	knowledge: 3 }
 		]
 	}
 
@@ -70,9 +70,9 @@ read(hdfs('people'))
 	-> filter 'Map/Reduce' in $.seminars
 	-> transform $.name;
 
-// people speaking Frensh
+// people speaking French
 read(hdfs('people'))
-	-> filter 'Frensh' in ($.languages[*].name)
+	-> filter 'French' in ($.languages[*].name)
 	-> transform $.name;
 
 //
