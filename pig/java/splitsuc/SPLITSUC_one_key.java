@@ -3,7 +3,6 @@ package splitsuc;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 import org.apache.pig.EvalFunc;
 import org.apache.pig.data.BagFactory;
 import org.apache.pig.data.DataBag;
@@ -15,7 +14,6 @@ import org.apache.pig.data.DataType;
 public class SPLITSUC extends EvalFunc<DataBag> {
     TupleFactory mTupleFactory = TupleFactory.getInstance();
     BagFactory mBagFactory = BagFactory.getInstance();
-		Integer numberOfKeys = 3;
 
     public DataBag exec(Tuple input) throws IOException {
 
@@ -29,17 +27,16 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 	      }
       
 				String[] words = ((String)o).split("\\W");
-				PriorityQueue<String> keys = new PriorityQueue<String>();
+				String last = "";
 				for (String word : words) {
-				  if (!word.equals("")) {			
-						if (keys.size() >= numberOfKeys) {
-							List<Tuple> currentList = new ArrayList<Tuple>();
-							currentList.add(mTupleFactory.newTuple(keys.toArray()));
-							currentList.add(mTupleFactory.newTuple(word));
+				  if (!word.equals("")) {				
+						if (last != "") {
+							List<String> currentList = new ArrayList<String>();
+							currentList.add(last);
+							currentList.add(word);								
 							output.add(mTupleFactory.newTuple(currentList));
-							keys.remove();
 						}
-						keys.add(word);
+					last = word;
 					}
 				}
 	       return output;
@@ -51,29 +48,22 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 
     public Schema outputSchema(Schema input) {
       try{
-	
-				Schema keyTupleSchema = new Schema();
-								
-				int factorial = 1;
-				for (int count=1; count <= numberOfKeys; count++) {
-					keyTupleSchema.add(new Schema.FieldSchema("word" + count.toString(), DataType.CHARARRAY));
-				}
-				
-				Schema.FieldSchema keyTupleFs;
-        keyTupleFs = new Schema.FieldSchema("keyTuple", keyTupleSchema, DataType.TUPLE);
-				
-				Schema.FieldSchema successor = new Schema.FieldSchema("successor", DataType.CHARARRAY);
+        Schema.FieldSchema word = new Schema.FieldSchema("word", DataType.CHARARRAY); 
+
+       	Schema.FieldSchema successor = new Schema.FieldSchema("successor", DataType.CHARARRAY);
 
         Schema tupleSchema = new Schema();
-				tupleSchema.add(keyTupleFs);
+				tupleSchema.add(word);
 				tupleSchema.add(successor);
 
         Schema.FieldSchema tupleFs;
-        tupleFs = new Schema.FieldSchema("keySuccessorTuple", tupleSchema, DataType.TUPLE);
+        tupleFs = new Schema.FieldSchema("tuple_of_tokens", tupleSchema,
+                DataType.TUPLE);
 
         Schema bagSchema = new Schema(tupleFs);
         bagSchema.setTwoLevelAccessRequired(true);
-        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfSuccessorTuple",bagSchema, DataType.BAG);
+        Schema.FieldSchema bagFs = new Schema.FieldSchema(
+                    "bag_of_tokenTuples",bagSchema, DataType.BAG);
         
         return new Schema(bagFs); 
 
