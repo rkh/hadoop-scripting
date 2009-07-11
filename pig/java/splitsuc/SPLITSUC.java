@@ -36,8 +36,8 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 	      if (!(o instanceof String)) {
 	          throw new IOException("Expected input to be chararray, but got " + o.getClass().getName());
 	      }
-      
-				String[] words = ((String)o).split("\\W");
+				myDebug("Input: " + o.toString());      	
+				String[] words = o.toString().split("\\s|&#160;");
 				myDebug("Split String: " + words.toString());
 				LinkedList<String> keys = new LinkedList<String>();
 				for (String word : words) {
