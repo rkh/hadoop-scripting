@@ -3,7 +3,7 @@ registerFunction("splitString", "com.acme.extensions.expr.SplitIterExpr");
 $markovEntry = fn($words, $indexSize, $pos) (
 	$index = range(0, $indexSize - 1)
 		-> transform each $i $words[$pos - $indexSize + $i],
-	{ index: $index, followedBy: $words[$pos] }
+	[ $index, $words[$pos] ]
 );
 
 $markovLine = fn($line, $indexSize) (
@@ -13,7 +13,11 @@ $markovLine = fn($line, $indexSize) (
 	$indices -> transform each $i $markovEntry($words, $indexSize, $i)
 );
 
-$markov = fn($lines, $indexSize) ( $lines -> expand each $line $markovLine($line, $indexSize) );
+$markov = fn($lines, $indexSize) (
+  $lines
+    -> expand each $line $markovLine($line, $indexSize)
+    -> group by $w = ($[0]) into [$w, $[*][1]]
+);
 
 $fromFile = fn($input) (
 	hdfsShell("-copyFromLocal " + $input + " markov_input") * 0,
@@ -29,5 +33,5 @@ $fromFile = fn($input) (
 
 $fromString = fn($input) ( splitString($input, "\n") );
 
-// $markov($fromFile("data/wikipedia"), 3);
-$markov($fromString("How much wood would a wood chuck chuck if a would chuck would chuck wood?"), 2);
+// $markov($fromFile("wikipedia"), 3) -> write(file('markov.json'));
+$markov($fromString("How much wood would a wood chuck chuck if a wood chuck could chuck wood?"), 1); // -> write(file('markov.json'));

@@ -2,7 +2,8 @@
 
 run only once:
 
-  sudo gem install curb
+  sudo gem install curb sequel
+  sudo gem install do_mysql -- --with-mysql-dir="/usr/local/mysql/" --with-mysql-config="/usr/local/mysql/bin/mysql_config"
   git submodule init
 		
 
