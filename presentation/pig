@@ -1,0 +1,21 @@
+register splitsuc.jar;
+
+input = LOAD 'corpera' USING PigStorage('\t') AS (row:chararray);
+input: The capital of Algeria is Algiers. (Line 113, Coloumn 1339)
+input: {row1, row2, row3, ...}
+
+tuples = FOREACH input GENERATE FLATTEN(splitsuc.SPLITSUC(*));
+tuples: 
+
+(The,capital,of)	(Algeria)
+(capital,of,Algeria)	(is)
+(of,Algeria,is)	(Algiers.)
+
+tuples: {((word1,word2,word3),(suc)), ...}
+
+grouped = GROUP tuples by (keyTuple, successorTuple);
+
+
+grouped_counted = FOREACH grouped GENERATE group, COUNT(tuples);
+final = order group_counted by $0 parallel 10; 
+STORE final INTO 'wikipedia.sql' USING splitsuc.STORESQL();

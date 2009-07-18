@@ -1,0 +1,26 @@
+Ziel: Beide Sprachen kennenlernen und vergleichen
+
+Vorstellung Pig
+Vorstellung Jaql
+
+Vorstellungen 5 Minuten pro Sprache
+	- Idee
+	- Architektur
+	- Datentypen
+	- Syntax / Semantik
+	- Projektlebendigkeit und Geschichte und Dokumentation
+	- Mächtigkeit / Einschränkungen
+	- Kurzes Beispiel
+
+Szenario
+	- MarkovChain erklären
+	- Implementierung der MarkovChain und Ablauf der Implementierung
+	- Ablauf der Tests
+
+Benchmark wie er auf dem Cluster ablaufen wird
+- Laufzeit
+- Speicher
+
+Fazit Pro/Contra und Ausblick
+
+35 Minuten mit Demo + 10 Minuten Diskussion
