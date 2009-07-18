@@ -5,13 +5,12 @@ $markovEntry = fn($words, $pos) (
 );
 
 $markovLine = fn($line) (
-	$words   = $line -> strSplit(" "),
+	$words = $line -> strSplit(" "),
 	range(3, count($words) - 1) -> transform $markovEntry($words, $)
 );
 
 $markov = fn($lines) (
   $lines
     -> expand each $line $markovLine($line)
-    -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ")"
-    -> strJoin(";\n") 
+    -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
 );
