@@ -1,0 +1,21 @@
+- Based on JavaScript Object Notation
+- Superset of JSON, subset of YAML and JavaScript
+
+  { hash: ["with", "an", "array", 42] }
+
+- Inspired by Unix Pipes
+
+  read -> transform -> count -> write;
+
+- Optimize plan  
+- Cluster Usage depends on input source:
+    hdfs, hbase, local, http
+
+- Interactive shell, prepacked jar
+- Not turing complete
+
+- Apache License 2.0
+- Developed mainly by IBM
+
+- Lack of documentation
+- Mailing list is dead
