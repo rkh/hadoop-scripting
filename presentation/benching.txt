@@ -1,0 +1,8 @@
+Both Need Hadoop 0.18
+Will Run On Cluster Week After Examens 
+
+Building Markov Chain Index Of Four
+
+Benchmarking Time And Memory
+
+Increasing Input Size (up to 20 GB)
