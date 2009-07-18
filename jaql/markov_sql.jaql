@@ -1,0 +1,17 @@
+registerFunction("strSplit", "com.acme.extensions.expr.SplitIterExpr");
+
+$markovEntry = fn($words, $pos) (
+	$words -> slice($pos - 3, $pos) -> transform serialize($) -> strJoin(", ")
+);
+
+$markovLine = fn($line) (
+	$words   = $line -> strSplit(" "),
+	range(3, count($words) - 1) -> transform $markovEntry($words, $)
+);
+
+$markov = fn($lines) (
+  $lines
+    -> expand each $line $markovLine($line)
+    -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ")"
+    -> strJoin(";\n") 
+);
