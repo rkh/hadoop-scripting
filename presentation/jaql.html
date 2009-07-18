@@ -1,0 +1,153 @@
+<img src="wikipedia.png" />
+
+<pre style="border: solid 1px #bbb">
+ Apache Hadoop is a free Java software framework that supports data intensive distributed applications...
+ ...
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  read<b>(</b>file<b>(</b><i>"input.dat"</i><b>, {</b>format: <i>'com.acme.extensions.data.FromLineConverter'</i><b>}));</b>
+</pre>
+
+<pre style="border: solid 1px #bbb"> 
+  <b>[</b>
+    <i>"Apache Hadoop is a free Java software framework that supports data intensive distributed applications...",</i>
+    ...
+  <b>]</b>
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  read<b>(</b>...<b>)</b> -> <u>$markov<b>()</b></u><b>;</b>
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> <u>expand each $line $markovLine($line)</u>
+      -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each <u>$line</u> $markovLine($line)
+      -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  <i>"Apache Hadoop is a free Java software framework that supports data intensive distributed applications..."</i>
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each $line <u>$markovLine($line)</u>
+      -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markovLine = fn($line) (
+  	<u>$words = $line -> strSplit(" "),</u>
+  	range(3, count($words) - 1) -> transform $markovEntry($words, $)
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  <b>[</b>"Apache", "Hadoop", "is", "a", "free", "Java", ...<b>]</b>
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markovLine = fn($line) (
+  	$words = $line -> strSplit(" "),
+  	<u>range(3, count($words) - 1)</u> -> transform $markovEntry($words, $)
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  [3, 4, 5, ...]
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markovLine = fn($line) (
+	  $words = $line -> strSplit(" "),
+	  range(3, count($words) - 1) -> <u>transform $markovEntry($words, $)</u>
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  $markovEntry = fn($words, $pos) (
+  	$words -> <u>slice($pos - 3, $pos)</u> -> transform serialize($) -> strJoin(", ")
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  <b>[</b>"Apache", "Hadoop", "is", "a"<b>]</b>
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  $markovEntry = fn($words, $pos) (
+  	$words -> slice($pos - 3, $pos) -> <u>transform serialize($)</u> -> strJoin(", ")
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  <b>[</b>"\"Apache\"", "\"Hadoop\"", "\"is\"", "\"a\""<b>]</b>
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markovEntry = fn($words, $pos) (
+  	$words -> slice($pos - 3, $pos) -> transform serialize($) -> <u>strJoin(", ")</u>
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  "\"Apache\", \"Hadoop\", \"is\", \"a\""
+</pre>
+
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each $line $markovLine($line)
+      -> <u>group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"</u>
+  );
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each $line $markovLine($line)
+      -> group by $w = (<u>$</u>) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  <b>[</b>"\"Apache\", \"Hadoop\", \"is\", \"a\""<b>]</b> 
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each $line $markovLine($line)
+      -> group by <u>$w</u> = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  "\"Apache\", \"Hadoop\", \"is\", \"a\""
+</pre>
+
+<pre style="border: solid 1px #bbb">
+  $markov = fn($lines) (
+    $lines
+      -> expand each $line $markovLine($line)
+      -> group by $w = ($) into <u>"INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"</u>
+  );
+</pre> 
+
+<pre style="border: solid 1px #bbb">
+  "INSERT INTO jaqltest.splitsuc VALUES (\"Apache\", \"Hadoop\", \"is\", \"a\", 1);"
+</pre>
