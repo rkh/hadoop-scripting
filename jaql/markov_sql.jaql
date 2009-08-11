@@ -14,3 +14,11 @@ $markov = fn($lines) (
     -> expand each $line $markovLine($line)
     -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
 );
+
+$markovHadoop = fn($from, $to) (
+  read('hdfs', $from, {format: 'org.apache.hadoop.mapred.TextInputFormat'})
+    -> $markov()
+    -> write('hdfs', $to, {format: 'org.apache.hadoop.mapred.TextOutputFormat'})
+);
+
+$markovHadoop("corpera.dat", "output.jql");
