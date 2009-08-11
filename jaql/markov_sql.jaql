@@ -15,10 +15,9 @@ $markov = fn($lines) (
     -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
 );
 
-$markovHadoop = fn($from, $to) (
-  read('hdfs', $from, {format: 'org.apache.hadoop.mapred.TextInputFormat'})
-    -> $markov()
-    -> write('hdfs', $to, {format: 'org.apache.hadoop.mapred.TextOutputFormat'})
-);
+//hdfsShell("-copyFromLocal current.dat current.dat") * 0; 
 
-$markovHadoop("corpera.dat", "output.jql");
+read(hdfs("corpera/current.dat",
+     {format: 'org.apache.hadoop.mapred.TextInputFormat'}))
+  -> $markov();
+  -> write(hdfs("jaql_output.dat", {format: 'org.apache.hadoop.mapred.TextOutputFormat'}));
