@@ -2,5 +2,5 @@
 cd ..
 ant make-jar
 cd test
-rm -Rf chains
+rm -Rf javachains
 hadoop jar ../dist/hadoop02.jar

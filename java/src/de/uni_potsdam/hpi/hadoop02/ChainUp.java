@@ -96,8 +96,8 @@ public class ChainUp {
 		conf.setInputFormat(TextInputFormat.class);
 		conf.setOutputFormat(TextOutputFormat.class);
 
-		FileInputFormat.setInputPaths(conf, new Path("input"));
-		FileOutputFormat.setOutputPath(conf, new Path("chains"));
+		FileInputFormat.setInputPaths(conf, new Path("corpera"));
+		FileOutputFormat.setOutputPath(conf, new Path("javachains"));
 
 		JobClient.runJob(conf);
 	}
