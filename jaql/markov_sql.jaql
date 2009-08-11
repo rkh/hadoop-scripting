@@ -19,6 +19,7 @@ $markov = fn($lines) (
 //hdfsShell("-copyFromLocal current.dat current.dat") * 0; 
 
 read(hdfs("corpera/current.dat",
-     {format: 'org.apache.hadoop.mapred.TextInputFormat'}))
+     {format: 'org.apache.hadoop.mapred.TextInputFormat',
+      converter: "com.acme.extensions.data.FromLineConverter"}))
   -> $markov()
   -> write(hdfs("jaql_output.dat", {format: 'org.apache.hadoop.mapred.TextOutputFormat'}));
