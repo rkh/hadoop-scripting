@@ -1,0 +1,5 @@
+Manifest-Version: 1.2
+Ant-Version: Apache Ant 1.7.1
+Created-By: Tim Felgentreff
+Main-Class: de/uni_potsdam/hpi/hadoop02/MarkovChains
+

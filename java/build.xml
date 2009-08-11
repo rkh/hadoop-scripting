@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hadoop02" basedir=".">
+
+	<property file="build.properties" />
+
+	<path id="compile.classpath">
+		<!-- default: include all libs from the lib directory -->
+		<fileset dir="${dir.lib}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${file.servlet-api.jar}" />
+	</path>
+
+	<target name="prepare" description="Prepares the build process">
+		<mkdir dir="${dir.dist}" />
+		<mkdir dir="${dir.classes}" />
+	</target>
+
+
+	<target name="compile" depends="prepare" description="Compiles the sources">
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" includes="**/*.java" classpathref="compile.classpath" debug="true" deprecation="true" />
+	</target>
+
+	<target name="clean" description="Delete generated resources">
+		<delete dir="${dir.classes}" />
+		<delete dir="${dir.dist}" />
+	</target>
+	
+	<target name="make-jar" depends="compile">
+		<jar manifest="${dir.manifest}/MANIFEST.MF" destfile="${dir.dist}/${project.name}.jar" basedir="${dir.classes}"/>
+	</target>
+</project>
