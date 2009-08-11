@@ -23,32 +23,39 @@ public class STORESQL implements StoreFunc {
 		}
 
     public void bindTo(OutputStream os) throws IOException
-    {
+    {                                               
         this.os = os;
 				String output = this.sqlHead + (char)this.recordDel;
-				this.os.write(output.getBytes("utf8"));
+				this.os.write(output.getBytes("utf8"));      
     }
     public void putNext(Tuple t) throws IOException
-    {
+    {                  
+				myDebug("Current Tuple is " + t.toString());
+				
 				List<Object> mainTuple = new ArrayList<Object>();
 				mainTuple = t.getAll();
 				
-				List<Object> groupTuple = new ArrayList<Object>();
-				groupTuple = ((Tuple)mainTuple.get(0)).getAll();
+				List<Object> wordsTuple = new ArrayList<Object>();
+				wordsTuple = ((Tuple)mainTuple.get(0)).getAll();
 				
-				List<Object> keyTuple = new ArrayList<Object>();
-				keyTuple = ((Tuple)groupTuple.get(0)).getAll();
+/*				List<Object> keyTuple = new ArrayList<Object>();
+				keyTuple = ((Tuple)wordsTuple.get(0)).getAll();*/
 				
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " is 0 " + keyTuple.get(0).toString());
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " mainTuple is 0 " + mainTuple.get(0).toString());
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " mainTuple is 1 " + mainTuple.get(1).toString());   
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 0 " + wordsTuple.get(0).toString());
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 1 " + wordsTuple.get(1).toString());
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 2 " + wordsTuple.get(2).toString());  
+				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 2 " + wordsTuple.get(3).toString());  				
 				
 				String output = "('";
-				output = output + escapeForSql(keyTuple.get(0).toString());
+				output = output + escapeForSql(wordsTuple.get(0).toString());
 				output = output + "', '";
-				output = output + escapeForSql(keyTuple.get(1).toString());
+				output = output + escapeForSql(wordsTuple.get(1).toString());
 				output = output + "', '";
-				output = output + escapeForSql(keyTuple.get(2).toString());
+				output = output + escapeForSql(wordsTuple.get(2).toString());
 				output = output + "', '";		
-				output = output + escapeForSql(((Tuple)groupTuple.get(1)).get(0).toString());
+				output = output + escapeForSql(wordsTuple.get(3).toString());      
 				output = output + "', '";
 				output = output + escapeForSql(mainTuple.get(1).toString());
 

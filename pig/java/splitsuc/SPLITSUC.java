@@ -15,7 +15,7 @@ import org.apache.pig.data.DataType;
 public class SPLITSUC extends EvalFunc<DataBag> {
     TupleFactory mTupleFactory = TupleFactory.getInstance();
     BagFactory mBagFactory = BagFactory.getInstance();
-		Integer numberOfKeys = 3;
+		Integer numberOfWords = 4;
 
 		public void myDebug(String message) {
 			if(false) {
@@ -39,13 +39,14 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 				myDebug("Input: " + o.toString());      	
 				String[] words = o.toString().split("\\s|&#160;");
 				myDebug("Split String: " + words.toString());
-				LinkedList<String> keys = new LinkedList<String>();
+				LinkedList<String> suc_words = new LinkedList<String>();
 				for (String word : words) {
-					myDebug("Word: " + word.toString());
+					myDebug("Current Word: " + word.toString());
 				  if (!word.equals("")) {			
-						if (keys.size() >= numberOfKeys) {
-							ArrayList<Tuple> currentList = new ArrayList<Tuple>();
-							
+						if (suc_words.size() >= numberOfWords) {
+							ArrayList<Tuple> currentList = new ArrayList<Tuple>();                                                                                               
+
+							/*							
 							// create key tuple
 							Tuple keyTuple = mTupleFactory.newTuple(keys.size());
 							for (int count=0; count < keys.size(); count++) {
@@ -60,12 +61,13 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 							currentList.add(wordTuple);
 							myDebug("WordTuple: " +  (wordTuple.toDelimitedString("; ")).toString());
 
-							myDebug("CurrentList: " +  (currentList.get(0).toDelimitedString(";")).toString() + " -> " + (currentList.get(1).toDelimitedString(";")).toString());
-							output.add(mTupleFactory.newTuple(currentList));
-							keys.removeFirst();
+							myDebug("CurrentList: " +  (currentList.get(0).toDelimitedString(";")).toString() + " -> " + (currentList.get(1).toDelimitedString(";")).toString());*/
+							
+							output.add(mTupleFactory.newTuple(suc_words));
+							suc_words.removeFirst();
 						}
-						keys.addLast(word);
-						myDebug("Keys " + keys.toString());
+						suc_words.addLast(word);
+						myDebug("Words List: " + suc_words.toString());
 					}
 				}
 	       return output;
@@ -78,11 +80,11 @@ public class SPLITSUC extends EvalFunc<DataBag> {
     public Schema outputSchema(Schema input) {
       try{
 	
-				Schema keyTupleSchema = new Schema();
+/*				Schema keyTupleSchema = new Schema();
 				
-				myDebug("Number of Keys: " + Integer.toString(numberOfKeys));
+				myDebug("Number of Keys: " + Integer.toString(numberOfWords));
 								
-				for (int count=1; count <= numberOfKeys; count++) {
+				for (int count=1; count <= numberOfWords; count++) {
 					keyTupleSchema.add(new Schema.FieldSchema("word" + Integer.toString(count), DataType.CHARARRAY));
 				}
 				Schema.FieldSchema keyTupleFs;
@@ -101,8 +103,22 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 
         Schema bagSchema = new Schema(tupleFs);
         bagSchema.setTwoLevelAccessRequired(true);
-        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfSuccessorTuple",bagSchema, DataType.BAG);
-        
+        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfSuccessorTuple",bagSchema, DataType.BAG);  */         
+
+				myDebug("Schema Number of Keys: " + Integer.toString(numberOfWords));                            
+
+				Schema wordsTupleSchema = new Schema();
+
+				for (int count=1; count <= numberOfWords; count++) {
+					wordsTupleSchema.add(new Schema.FieldSchema("word" + Integer.toString(count), DataType.CHARARRAY));
+				}
+				Schema.FieldSchema wordsTupleFs;
+				wordsTupleFs = new Schema.FieldSchema("keyTuple", wordsTupleSchema, DataType.TUPLE);
+                                       
+        Schema bagSchema = new Schema(wordsTupleFs);
+        bagSchema.setTwoLevelAccessRequired(true);
+        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfWordsWithSuccessor",bagSchema, DataType.BAG);
+
         return new Schema(bagFs); 
 
       }catch (Exception e){
