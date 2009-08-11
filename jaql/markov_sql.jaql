@@ -20,5 +20,5 @@ $markov = fn($lines) (
 
 read(hdfs("corpera/current.dat",
      {format: 'org.apache.hadoop.mapred.TextInputFormat'}))
-  -> $markov();
+  -> $markov()
   -> write(hdfs("jaql_output.dat", {format: 'org.apache.hadoop.mapred.TextOutputFormat'}));
