@@ -22,4 +22,4 @@ read(hdfs("corpera/current.dat",
      {format: 'org.apache.hadoop.mapred.TextInputFormat',
       converter: "com.acme.extensions.data.FromLineConverter"}))
   -> $markov()
-  -> write(hdfs("jaql_output.dat", {format: 'org.apache.hadoop.mapred.TextOutputFormat'}));
+  -> write(hdfs("jaql_output.dat"));
