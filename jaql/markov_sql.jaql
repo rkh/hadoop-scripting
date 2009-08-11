@@ -1,4 +1,5 @@
 registerFunction("strSplit", "com.acme.extensions.expr.SplitIterExpr");
+registerFunction("splitArr", "com.acme.extensions.expr.SplitIterExpr");
 
 $markovEntry = fn($words, $pos) (
 	$words -> slice($pos - 3, $pos) -> transform serialize($) -> strJoin(", ")
