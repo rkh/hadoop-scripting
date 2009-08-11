@@ -30,24 +30,13 @@ public class STORESQL implements StoreFunc {
     }
     public void putNext(Tuple t) throws IOException
     {                  
-				myDebug("Current Tuple is " + t.toString());
 				
 				List<Object> mainTuple = new ArrayList<Object>();
 				mainTuple = t.getAll();
 				
 				List<Object> wordsTuple = new ArrayList<Object>();
 				wordsTuple = ((Tuple)mainTuple.get(0)).getAll();
-				
-/*				List<Object> keyTuple = new ArrayList<Object>();
-				keyTuple = ((Tuple)wordsTuple.get(0)).getAll();*/
-				
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " mainTuple is 0 " + mainTuple.get(0).toString());
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " mainTuple is 1 " + mainTuple.get(1).toString());   
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 0 " + wordsTuple.get(0).toString());
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 1 " + wordsTuple.get(1).toString());
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 2 " + wordsTuple.get(2).toString());  
-				myDebug("For count " + Integer.toString(this.currentTupleNumber) + " wordsTuple is 2 " + wordsTuple.get(3).toString());  				
-				
+								
 				String output = "('";
 				output = output + escapeForSql(wordsTuple.get(0).toString());
 				output = output + "', '";

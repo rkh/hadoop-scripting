@@ -36,38 +36,17 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 	      if (!(o instanceof String)) {
 	          throw new IOException("Expected input to be chararray, but got " + o.getClass().getName());
 	      }
-				myDebug("Input: " + o.toString());      	
 				String[] words = o.toString().split("\\s|&#160;");
-				myDebug("Split String: " + words.toString());
 				LinkedList<String> suc_words = new LinkedList<String>();
 				for (String word : words) {
-					myDebug("Current Word: " + word.toString());
 				  if (!word.equals("")) {			
 						if (suc_words.size() >= numberOfWords) {
 							ArrayList<Tuple> currentList = new ArrayList<Tuple>();                                                                                               
-
-							/*							
-							// create key tuple
-							Tuple keyTuple = mTupleFactory.newTuple(keys.size());
-							for (int count=0; count < keys.size(); count++) {
-								keyTuple.set(count, keys.get(count));
-							}
-							myDebug("KeyTuple: " +  (keyTuple.toDelimitedString("; ")).toString());
-							currentList.add(keyTuple);
-							
-							// create word tuple
-							Tuple wordTuple = mTupleFactory.newTuple(1);
-							wordTuple.set(0, word);
-							currentList.add(wordTuple);
-							myDebug("WordTuple: " +  (wordTuple.toDelimitedString("; ")).toString());
-
-							myDebug("CurrentList: " +  (currentList.get(0).toDelimitedString(";")).toString() + " -> " + (currentList.get(1).toDelimitedString(";")).toString());*/
-							
+						
 							output.add(mTupleFactory.newTuple(suc_words));
 							suc_words.removeFirst();
 						}
 						suc_words.addLast(word);
-						myDebug("Words List: " + suc_words.toString());
 					}
 				}
 	       return output;
@@ -79,33 +58,6 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 
     public Schema outputSchema(Schema input) {
       try{
-	
-/*				Schema keyTupleSchema = new Schema();
-				
-				myDebug("Number of Keys: " + Integer.toString(numberOfWords));
-								
-				for (int count=1; count <= numberOfWords; count++) {
-					keyTupleSchema.add(new Schema.FieldSchema("word" + Integer.toString(count), DataType.CHARARRAY));
-				}
-				Schema.FieldSchema keyTupleFs;
-        keyTupleFs = new Schema.FieldSchema("keyTuple", keyTupleSchema, DataType.TUPLE);
-				
-				Schema successorSchema = new Schema();
-				successorSchema.add(new Schema.FieldSchema("successor", DataType.CHARARRAY));
-				Schema.FieldSchema successorTupleFs;
-        successorTupleFs = new Schema.FieldSchema("successorTuple", successorSchema, DataType.TUPLE);
-
-        Schema tupleSchema = new Schema();
-				tupleSchema.add(keyTupleFs);
-				tupleSchema.add(successorTupleFs);
-        Schema.FieldSchema tupleFs;
-        tupleFs = new Schema.FieldSchema("keySuccessorTuple", tupleSchema, DataType.TUPLE);
-
-        Schema bagSchema = new Schema(tupleFs);
-        bagSchema.setTwoLevelAccessRequired(true);
-        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfSuccessorTuple",bagSchema, DataType.BAG);  */         
-
-				myDebug("Schema Number of Keys: " + Integer.toString(numberOfWords));                            
 
 				Schema wordsTupleSchema = new Schema();
 
