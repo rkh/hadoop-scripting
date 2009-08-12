@@ -36,7 +36,7 @@ for i in $SIZES; do
   for j in `seq 1 4`; do
     run_hadoop $i $j
     run_pig $i $j
-    #run_jaql $i $j
+    run_jaql $i $j
   done
 done
 
