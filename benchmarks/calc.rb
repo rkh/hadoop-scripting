@@ -5,15 +5,16 @@ s=""
 
 File.open(ARGV[0]) do |f| 
   f.lines.to_a[1..-1].each do |l|
-    high = 0
+    high = count = 0
     low = 1.0/0
     avg = (l.split[1..-1].inject(0) do |sum,e|
        sp = e.split(":").map { |i| i.to_i }
        t = sp[0]*3600 + sp[1]*60 + sp[2]
        high = t if t > high
        low = t if t < low
+       count += 1
        sum = t + sum
-    end) / 4
+    end) / count
     keys = []
     [avg, high, low].each do |item|
       keys << Duration.new(item).format("%H:%M:%S")
