@@ -21,7 +21,7 @@ $markov = fn($lines) (
 // $source = "markov_input";
 
 // real cluster
-$source = "corpera/current.dat"
+$source = "corpera/current.dat";
 
 read({
 	type: "hdfs",
