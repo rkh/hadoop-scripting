@@ -1,4 +1,5 @@
 registerFunction("strSplit", "com.acme.extensions.expr.SplitIterExpr");
+registerFunction("splitArr", "com.acme.extensions.expr.SplitIterExpr");
 
 $markovEntry = fn($words, $pos) (
 	$words -> slice($pos - 3, $pos) -> transform serialize($) -> strJoin(", ")
@@ -14,3 +15,19 @@ $markov = fn($lines) (
     -> expand each $line $markovLine($line)
     -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
 );
+
+// mini cluster
+// hdfsShell("-copyFromLocal input markov_input") * 0;
+// $source = "markov_input";
+
+// real cluster
+$source = "corpera/current.dat";
+
+read({
+	type: "hdfs",
+	location: $source,
+	inoptions: {
+		format: "org.apache.hadoop.mapred.TextInputFormat",
+		converter: "com.acme.extensions.data.FromLineConverter"
+	}
+}) -> $markov() -> write({type: "hdfs", location: "jaql_output"});

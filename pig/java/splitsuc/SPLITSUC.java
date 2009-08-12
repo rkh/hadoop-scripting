@@ -15,7 +15,7 @@ import org.apache.pig.data.DataType;
 public class SPLITSUC extends EvalFunc<DataBag> {
     TupleFactory mTupleFactory = TupleFactory.getInstance();
     BagFactory mBagFactory = BagFactory.getInstance();
-		Integer numberOfKeys = 3;
+		Integer numberOfWords = 4;
 
 		public void myDebug(String message) {
 			if(false) {
@@ -36,36 +36,17 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 	      if (!(o instanceof String)) {
 	          throw new IOException("Expected input to be chararray, but got " + o.getClass().getName());
 	      }
-				myDebug("Input: " + o.toString());      	
 				String[] words = o.toString().split("\\s|&#160;");
-				myDebug("Split String: " + words.toString());
-				LinkedList<String> keys = new LinkedList<String>();
+				LinkedList<String> suc_words = new LinkedList<String>();
 				for (String word : words) {
-					myDebug("Word: " + word.toString());
 				  if (!word.equals("")) {			
-						if (keys.size() >= numberOfKeys) {
-							ArrayList<Tuple> currentList = new ArrayList<Tuple>();
-							
-							// create key tuple
-							Tuple keyTuple = mTupleFactory.newTuple(keys.size());
-							for (int count=0; count < keys.size(); count++) {
-								keyTuple.set(count, keys.get(count));
-							}
-							myDebug("KeyTuple: " +  (keyTuple.toDelimitedString("; ")).toString());
-							currentList.add(keyTuple);
-							
-							// create word tuple
-							Tuple wordTuple = mTupleFactory.newTuple(1);
-							wordTuple.set(0, word);
-							currentList.add(wordTuple);
-							myDebug("WordTuple: " +  (wordTuple.toDelimitedString("; ")).toString());
-
-							myDebug("CurrentList: " +  (currentList.get(0).toDelimitedString(";")).toString() + " -> " + (currentList.get(1).toDelimitedString(";")).toString());
-							output.add(mTupleFactory.newTuple(currentList));
-							keys.removeFirst();
+						if (suc_words.size() >= numberOfWords) {
+							ArrayList<Tuple> currentList = new ArrayList<Tuple>();                                                                                               
+						
+							output.add(mTupleFactory.newTuple(suc_words));
+							suc_words.removeFirst();
 						}
-						keys.addLast(word);
-						myDebug("Keys " + keys.toString());
+						suc_words.addLast(word);
 					}
 				}
 	       return output;
@@ -77,32 +58,19 @@ public class SPLITSUC extends EvalFunc<DataBag> {
 
     public Schema outputSchema(Schema input) {
       try{
-	
-				Schema keyTupleSchema = new Schema();
-				
-				myDebug("Number of Keys: " + Integer.toString(numberOfKeys));
-								
-				for (int count=1; count <= numberOfKeys; count++) {
-					keyTupleSchema.add(new Schema.FieldSchema("word" + Integer.toString(count), DataType.CHARARRAY));
+
+				Schema wordsTupleSchema = new Schema();
+
+				for (int count=1; count <= numberOfWords; count++) {
+					wordsTupleSchema.add(new Schema.FieldSchema("word" + Integer.toString(count), DataType.CHARARRAY));
 				}
-				Schema.FieldSchema keyTupleFs;
-        keyTupleFs = new Schema.FieldSchema("keyTuple", keyTupleSchema, DataType.TUPLE);
-				
-				Schema successorSchema = new Schema();
-				successorSchema.add(new Schema.FieldSchema("successor", DataType.CHARARRAY));
-				Schema.FieldSchema successorTupleFs;
-        successorTupleFs = new Schema.FieldSchema("successorTuple", successorSchema, DataType.TUPLE);
-
-        Schema tupleSchema = new Schema();
-				tupleSchema.add(keyTupleFs);
-				tupleSchema.add(successorTupleFs);
-        Schema.FieldSchema tupleFs;
-        tupleFs = new Schema.FieldSchema("keySuccessorTuple", tupleSchema, DataType.TUPLE);
-
-        Schema bagSchema = new Schema(tupleFs);
+				Schema.FieldSchema wordsTupleFs;
+				wordsTupleFs = new Schema.FieldSchema("keyTuple", wordsTupleSchema, DataType.TUPLE);
+                                       
+        Schema bagSchema = new Schema(wordsTupleFs);
         bagSchema.setTwoLevelAccessRequired(true);
-        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfSuccessorTuple",bagSchema, DataType.BAG);
-        
+        Schema.FieldSchema bagFs = new Schema.FieldSchema("BagOfWordsWithSuccessor",bagSchema, DataType.BAG);
+
         return new Schema(bagFs); 
 
       }catch (Exception e){
