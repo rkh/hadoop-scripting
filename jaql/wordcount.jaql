@@ -5,7 +5,7 @@ $src = {
   location: "corpera/current.dat",
   inoptions: {
     format: "org.apache.hadoop.mapred.TextInputFormat",
-    converter: "com.acme.extensions.data.FromLineConverter" } }
+    converter: "com.acme.extensions.data.FromLineConverter" } };
 
 read($src)
   -> expand splitArr($, " ")
