@@ -16,10 +16,18 @@ $markov = fn($lines) (
     -> group by $w = ($) into "INSERT INTO jaqltest.splitsuc VALUES (" + $w + ", " + serialize(count($)) + ");"
 );
 
-//hdfsShell("-copyFromLocal current.dat current.dat") * 0; 
+// mini cluster
+// hdfsShell("-copyFromLocal input markov_input") * 0;
+// $source = "markov_input";
 
-read(hdfs("corpera/current.dat",
-     {format: 'org.apache.hadoop.mapred.TextInputFormat',
-      converter: "com.acme.extensions.data.FromLineConverter"}))
-  -> $markov();
-//  -> write(hdfs("jaql_output.dat"));
+// real cluster
+$source = "corpera/current.dat"
+
+read({
+	type: "hdfs",
+	location: $source,
+	inoptions: {
+		format: "org.apache.hadoop.mapred.TextInputFormat",
+		converter: "com.acme.extensions.data.FromLineConverter"
+	}
+}) -> $markov() -> write({type: "hdfs", location: "jaql_output"});
