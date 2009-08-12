@@ -10,4 +10,4 @@ $src = {
 read($src)
   -> expand splitArr($, " ")
   -> group by $w = ($) into [$w, count($)]
-  -> write(hdfs("word_count_jaql.dat"));
+  -> write(hdfs("jaql"));
