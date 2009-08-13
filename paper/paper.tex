@@ -1,0 +1,98 @@
+\documentclass{llncs}
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage[pdftex]{graphicx} % PNGs
+\usepackage{amsmath, amssymb} % algebra
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[procnames]{listings} % for sourcecode
+\usepackage{graphviz} % graphs
+\usepackage{array,multirow} % tables
+\usepackage{afterpage} % figures
+\usepackage{float} % figures
+
+\restylefloat{figure}
+\begin{document}
+\pagestyle{headings}  % switches on printing of running heads
+\mainmatter % start of the contributions
+\title{Similarity Join on Hadoop}
+\subtitle{An Evaluation of the Hadoop Map/Reduce Environment}
+\titlerunning{Similarity Join}  % abbreviated title (for running head)
+\author{Andrina Mascher, Tim Felgentreff}
+\date{\today}
+\authorrunning{Mascher, Felgentreff}   % abbreviated author list (for running head)
+\tocauthor{Andrina Mascher, Tim Felgentreff (Hasso-Plattner-Institute)}
+\institute{Map/Reduce Algorithms on Hadoop, Research Group Information Systems, Hasso-Plattner-Institut, Universität Potsdam, D-14482 Potsdam, Germany,\\
+\email{\{andrina.mascher, tim.felgentreff\}@student.hpi.uni-potsdam.de}}
+
+\maketitle
+\begin{abstract}
+  Bla Bla Bla yada yada yada
+\end{abstract}
+\section{Introduction} % 1 Seite
+Lorem Ipsum
+\section{Algorithm}
+Some general thoughts
+\subsection{Supporting Algorithms} % 0.6 Seiten
+\paragraph{Jaccard}
+\paragraph{Porter Stemmer}
+\subsection{Phase 1}
+\subsubsection{Map}
+\subsubsection{Reduce}
+\subsection{Phase 2}
+\subsubsection{Map}
+\subsubsection{Reduce}
+\subsection{Phase 3}
+\subsubsection{Map}
+\subsubsection{Reduce} % 2-3 Seiten
+\section{Benchmarking}
+All of the aforementioned thoughts and architecture would be futile if it were not 
+rewarded with an appropriate increase in performance or at least scalability. 
+\begin{figure}[tb]
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{imgs/scaling}
+  \end{center}
+  \caption{Run-time development over growing input sizes}
+  \label{fig:runtime}
+\end{figure}
+As we can gather from Fig. \ref{fig:runtime} the run-time complexity of the 
+algorithm matches a graph in $\mathcal{O}(n^2)$, as we had shown theoretically.
+This complexity class, however, means that we have not been able to reach a 
+better complexity of the overall algorithm through map/reduce. For small data sets
+running it in the cluster is even slower than running locally. Still, the 
+gain comes with the massive parallelization of Hadoop, and thus is more and more 
+apparent on large inputs.
+
+The reasons we found for this are mainly in the way Hadoop distributes data 
+between the map and reduce phases. Especially for small jobs with low per-node 
+run-time the overhead of sending, in the worst-case scenario, all of our data 
+over TCP/IP three times over outmatches any gain through 
+parallel processing. This assertion appeared to hold when running on larger 
+input-sets. It proved to be correct when we changed the algorithm from running 
+four map/reduce jobs to only running three.
+
+Running with one job less our running time went down by an almost constant fraction 
+for each point of measurement, indicating that indeed a large amount of our input 
+is send over the network in-between jobs.
+%
+\section{Lessons learned}
+\begin{figure}[tb]
+  \begin{center}
+    %\includegraphics{reducers}
+  \end{center}
+  \caption{Processing Speed in Relation to Number of Reducers}
+  \label{fig:reducers}
+\end{figure}
+Things about Hadoop \\
+Crazy stuff
+\section{Conclusions}
+Whatever we thought, we can do, we do
+\section*{Acknowledgements} % 2-3 Seiten
+We thank Alexander Albrecht for his advice on the algorithm and his help in finding the optimal 
+way at tackling the problem. We would also like to thank Professor Neumann for enabling us to 
+attend this seminar.
+%
+\nocite{*}
+\bibliographystyle{splncs}
+\bibliography{hadoop}
+\clearpage
+\end{document}
