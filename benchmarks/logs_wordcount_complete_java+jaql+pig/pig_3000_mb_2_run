@@ -1,0 +1,21 @@
+2009-08-13 18:12:05,276 [main] INFO  org.apache.pig.Main - Logging error messages to: /home/hadoop02/pig/pig_1250179925275.log
+log4j:WARN No appenders could be found for logger (org.apache.hadoop.conf.Configuration).
+log4j:WARN Please initialize the log4j system properly.
+2009-08-13 18:12:05,434 [main] INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to hadoop file system at: hdfs://172.16.23.181:9000
+2009-08-13 18:12:05,627 [main] INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to map-reduce job tracker at: 172.16.23.181:9001
+2009-08-13 18:12:06,016 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer - Choosing to move algebraic foreach to combiner
+2009-08-13 18:12:06,034 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MultiQueryOptimizer - MR plan size before optimization: 1
+2009-08-13 18:12:06,034 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MultiQueryOptimizer - MR plan size after optimization: 1
+2009-08-13 18:12:07,256 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.JobControlCompiler - Setting up single store job
+2009-08-13 18:12:07,812 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 0% complete
+2009-08-13 18:21:52,147 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 36% complete
+2009-08-13 18:25:42,567 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 49% complete
+2009-08-13 18:29:25,936 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 62% complete
+2009-08-13 18:33:26,991 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 83% complete
+2009-08-13 18:38:53,071 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 100% complete
+2009-08-13 18:38:53,071 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - Successfully stored result in: "hdfs://hadoop09ws10.hpi.uni-potsdam.de:9000/user/hadoop02/pig"
+2009-08-13 18:38:53,100 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - Records written : 14001596
+2009-08-13 18:38:53,100 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - Bytes written : 257149148
+2009-08-13 18:38:53,100 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - Success!
+6.20user 0.69system 26:48.79elapsed 0%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (1major+37712minor)pagefaults 0swaps

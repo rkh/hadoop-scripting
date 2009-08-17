@@ -1,0 +1,120 @@
+09/08/12 20:04:19 INFO mapred.FileInputFormat: Total input paths to process : 252
+09/08/12 20:04:19 INFO mapred.FileInputFormat: Total input paths to process : 252
+09/08/12 20:04:20 INFO mapred.JobClient: Running job: job_200908101452_0204
+09/08/12 20:04:21 INFO mapred.JobClient:  map 0% reduce 0%
+09/08/12 20:04:29 INFO mapred.JobClient:  map 1% reduce 0%
+09/08/12 20:04:30 INFO mapred.JobClient:  map 3% reduce 0%
+09/08/12 20:04:33 INFO mapred.JobClient:  map 5% reduce 0%
+09/08/12 20:04:35 INFO mapred.JobClient:  map 6% reduce 0%
+09/08/12 20:04:38 INFO mapred.JobClient:  map 8% reduce 1%
+09/08/12 20:04:39 INFO mapred.JobClient:  map 9% reduce 1%
+09/08/12 20:04:42 INFO mapred.JobClient:  map 11% reduce 1%
+09/08/12 20:04:44 INFO mapred.JobClient:  map 12% reduce 1%
+09/08/12 20:04:45 INFO mapred.JobClient:  map 13% reduce 1%
+09/08/12 20:04:46 INFO mapred.JobClient:  map 14% reduce 1%
+09/08/12 20:04:48 INFO mapred.JobClient:  map 15% reduce 1%
+09/08/12 20:04:51 INFO mapred.JobClient:  map 16% reduce 2%
+09/08/12 20:04:52 INFO mapred.JobClient:  map 17% reduce 2%
+09/08/12 20:04:53 INFO mapred.JobClient:  map 18% reduce 3%
+09/08/12 20:04:55 INFO mapred.JobClient:  map 19% reduce 3%
+09/08/12 20:04:56 INFO mapred.JobClient:  map 19% reduce 4%
+09/08/12 20:04:57 INFO mapred.JobClient:  map 21% reduce 4%
+09/08/12 20:04:59 INFO mapred.JobClient:  map 22% reduce 4%
+09/08/12 20:05:01 INFO mapred.JobClient:  map 24% reduce 5%
+09/08/12 20:05:03 INFO mapred.JobClient:  map 25% reduce 5%
+09/08/12 20:05:05 INFO mapred.JobClient:  map 26% reduce 5%
+09/08/12 20:05:06 INFO mapred.JobClient:  map 28% reduce 6%
+09/08/12 20:05:07 INFO mapred.JobClient:  map 29% reduce 6%
+09/08/12 20:05:10 INFO mapred.JobClient:  map 31% reduce 6%
+09/08/12 20:05:11 INFO mapred.JobClient:  map 33% reduce 7%
+09/08/12 20:05:14 INFO mapred.JobClient:  map 35% reduce 7%
+09/08/12 20:05:15 INFO mapred.JobClient:  map 36% reduce 7%
+09/08/12 20:05:16 INFO mapred.JobClient:  map 37% reduce 8%
+09/08/12 20:05:17 INFO mapred.JobClient:  map 38% reduce 8%
+09/08/12 20:05:18 INFO mapred.JobClient:  map 38% reduce 9%
+09/08/12 20:05:19 INFO mapred.JobClient:  map 39% reduce 9%
+09/08/12 20:05:20 INFO mapred.JobClient:  map 40% reduce 9%
+09/08/12 20:05:21 INFO mapred.JobClient:  map 42% reduce 10%
+09/08/12 20:05:23 INFO mapred.JobClient:  map 43% reduce 11%
+09/08/12 20:05:24 INFO mapred.JobClient:  map 44% reduce 11%
+09/08/12 20:05:25 INFO mapred.JobClient:  map 46% reduce 11%
+09/08/12 20:05:26 INFO mapred.JobClient:  map 46% reduce 12%
+09/08/12 20:05:28 INFO mapred.JobClient:  map 48% reduce 12%
+09/08/12 20:05:29 INFO mapred.JobClient:  map 49% reduce 12%
+09/08/12 20:05:30 INFO mapred.JobClient:  map 50% reduce 12%
+09/08/12 20:05:31 INFO mapred.JobClient:  map 51% reduce 13%
+09/08/12 20:05:32 INFO mapred.JobClient:  map 52% reduce 13%
+09/08/12 20:05:33 INFO mapred.JobClient:  map 52% reduce 14%
+09/08/12 20:05:34 INFO mapred.JobClient:  map 53% reduce 14%
+09/08/12 20:05:35 INFO mapred.JobClient:  map 55% reduce 14%
+09/08/12 20:05:37 INFO mapred.JobClient:  map 56% reduce 14%
+09/08/12 20:05:38 INFO mapred.JobClient:  map 57% reduce 14%
+09/08/12 20:05:39 INFO mapred.JobClient:  map 58% reduce 14%
+09/08/12 20:05:40 INFO mapred.JobClient:  map 59% reduce 14%
+09/08/12 20:05:42 INFO mapred.JobClient:  map 61% reduce 14%
+09/08/12 20:05:44 INFO mapred.JobClient:  map 62% reduce 14%
+09/08/12 20:05:45 INFO mapred.JobClient:  map 63% reduce 14%
+09/08/12 20:05:46 INFO mapred.JobClient:  map 64% reduce 14%
+09/08/12 20:05:47 INFO mapred.JobClient:  map 65% reduce 14%
+09/08/12 20:05:48 INFO mapred.JobClient:  map 66% reduce 14%
+09/08/12 20:05:49 INFO mapred.JobClient:  map 67% reduce 14%
+09/08/12 20:05:51 INFO mapred.JobClient:  map 69% reduce 14%
+09/08/12 20:05:52 INFO mapred.JobClient:  map 70% reduce 14%
+09/08/12 20:05:53 INFO mapred.JobClient:  map 71% reduce 14%
+09/08/12 20:05:55 INFO mapred.JobClient:  map 72% reduce 14%
+09/08/12 20:05:56 INFO mapred.JobClient:  map 74% reduce 16%
+09/08/12 20:05:58 INFO mapred.JobClient:  map 75% reduce 16%
+09/08/12 20:05:59 INFO mapred.JobClient:  map 76% reduce 16%
+09/08/12 20:06:00 INFO mapred.JobClient:  map 77% reduce 16%
+09/08/12 20:06:01 INFO mapred.JobClient:  map 78% reduce 17%
+09/08/12 20:06:02 INFO mapred.JobClient:  map 79% reduce 17%
+09/08/12 20:06:03 INFO mapred.JobClient:  map 80% reduce 19%
+09/08/12 20:06:05 INFO mapred.JobClient:  map 82% reduce 19%
+09/08/12 20:06:06 INFO mapred.JobClient:  map 83% reduce 20%
+09/08/12 20:06:08 INFO mapred.JobClient:  map 85% reduce 20%
+09/08/12 20:06:10 INFO mapred.JobClient:  map 87% reduce 20%
+09/08/12 20:06:11 INFO mapred.JobClient:  map 87% reduce 22%
+09/08/12 20:06:12 INFO mapred.JobClient:  map 89% reduce 22%
+09/08/12 20:06:14 INFO mapred.JobClient:  map 91% reduce 22%
+09/08/12 20:06:16 INFO mapred.JobClient:  map 92% reduce 23%
+09/08/12 20:06:18 INFO mapred.JobClient:  map 94% reduce 24%
+09/08/12 20:06:20 INFO mapred.JobClient:  map 95% reduce 24%
+09/08/12 20:06:21 INFO mapred.JobClient:  map 97% reduce 24%
+09/08/12 20:06:22 INFO mapred.JobClient:  map 98% reduce 24%
+09/08/12 20:06:23 INFO mapred.JobClient:  map 99% reduce 24%
+09/08/12 20:06:36 INFO mapred.JobClient:  map 100% reduce 25%
+09/08/12 20:06:38 INFO mapred.JobClient:  map 100% reduce 27%
+09/08/12 20:06:41 INFO mapred.JobClient:  map 100% reduce 28%
+09/08/12 20:06:58 INFO mapred.JobClient:  map 100% reduce 29%
+09/08/12 20:07:19 INFO mapred.JobClient:  map 100% reduce 31%
+09/08/12 20:07:23 INFO mapred.JobClient:  map 100% reduce 32%
+09/08/12 20:07:43 INFO mapred.JobClient:  map 100% reduce 33%
+09/08/12 20:07:53 INFO mapred.JobClient:  map 100% reduce 71%
+09/08/12 20:07:58 INFO mapred.JobClient:  map 100% reduce 78%
+09/08/12 20:08:03 INFO mapred.JobClient:  map 100% reduce 81%
+09/08/12 20:08:04 INFO mapred.JobClient:  map 100% reduce 85%
+09/08/12 20:08:08 INFO mapred.JobClient:  map 100% reduce 89%
+09/08/12 20:08:13 INFO mapred.JobClient: Job complete: job_200908101452_0204
+09/08/12 20:08:13 INFO mapred.JobClient: Counters: 17
+09/08/12 20:08:13 INFO mapred.JobClient:   File Systems
+09/08/12 20:08:13 INFO mapred.JobClient:     HDFS bytes read=685367184
+09/08/12 20:08:13 INFO mapred.JobClient:     HDFS bytes written=73725884
+09/08/12 20:08:13 INFO mapred.JobClient:     Local bytes read=621918135
+09/08/12 20:08:13 INFO mapred.JobClient:     Local bytes written=852807855
+09/08/12 20:08:13 INFO mapred.JobClient:   Job Counters 
+09/08/12 20:08:13 INFO mapred.JobClient:     Launched reduce tasks=1
+09/08/12 20:08:13 INFO mapred.JobClient:     Rack-local map tasks=227
+09/08/12 20:08:13 INFO mapred.JobClient:     Launched map tasks=266
+09/08/12 20:08:13 INFO mapred.JobClient:     Data-local map tasks=32
+09/08/12 20:08:13 INFO mapred.JobClient:   Map-Reduce Framework
+09/08/12 20:08:13 INFO mapred.JobClient:     Reduce input groups=4246405
+09/08/12 20:08:13 INFO mapred.JobClient:     Combine output records=35417028
+09/08/12 20:08:13 INFO mapred.JobClient:     Map input records=73531
+09/08/12 20:08:13 INFO mapred.JobClient:     Reduce output records=4246405
+09/08/12 20:08:13 INFO mapred.JobClient:     Map output bytes=1082568119
+09/08/12 20:08:13 INFO mapred.JobClient:     Map input bytes=685268873
+09/08/12 20:08:13 INFO mapred.JobClient:     Combine input records=127898882
+09/08/12 20:08:13 INFO mapred.JobClient:     Map output records=99324525
+09/08/12 20:08:13 INFO mapred.JobClient:     Reduce input records=6842671
+1.81user 0.13system 3:56.26elapsed 0%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (2major+21052minor)pagefaults 0swaps

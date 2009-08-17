@@ -1,0 +1,23 @@
+
+jaql> registerFunction("splitArr", "com.acme.extensions.expr.SplitIterExpr");"splitArr"
+
+jaql>       
+
+$src = {
+  type: "hdfs",
+  location: "corpera/current.dat",
+  inoptions: {
+    format: "org.apache.hadoop.mapred.TextInputFormat",
+    converter: "com.acme.extensions.data.FromLineConverter" } };
+jaql> 
+
+read($src)
+  -> expand splitArr($, " ")
+  -> group by $w = ($) into [$w, count($)]
+  -> write(hdfs("jaql"));{
+  "location": "jaql",
+  "type": "hdfs"
+}
+
+jaql> ￿4.05user 0.36system 14:15.07elapsed 0%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (13major+39312minor)pagefaults 0swaps
