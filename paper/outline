@@ -1,11 +1,12 @@
 Introduction // Probemstellung, Überlegungen dazu
 Jaql
-Pig
+Pig  
+The Cluster Setup
+Scenario Wordcount
+Benching Hadoop vs. Jaql vs. Pig
 Scenario Markov Chain      
 Programming with Jaql
 Programming with Pig
 Benching Hadoop vs. Pig
-Scenario Wordcount
-Benching Hadoop vs. Jaql vs. Pig
 
 Conclusion
