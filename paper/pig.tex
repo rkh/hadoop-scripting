@@ -1,29 +1,17 @@
-Pig is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!. 
+Pig \footnote{"http://hadoop.apache.org/pig/"} is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!. 
 
-Pig Latin
-
-Active Mailinglist and community.
+It has an active community \footnote{"Mailinglist at pig-user@hadoop.apache.org"} and a growing ecosystem \footnote{"http://wiki.apache.org/pig/PigTools"}.
 
 The development of Pig took three key aspects into account. \footnote{"http://hadoop.apache.org/pig/"} The ease of programming was the major goal. Writing powerful scripts against very large data sets that are easy to write, read and maintain.
 
-Optimisation was another goal. When writing in Pig Latin, it is not needed for the programmer to think within the Map/Reduce paradigm since Pig handles the transformation of the Pig Latin script to the particular map and reduce jobs. This also offers opportunities for automatic optimisations made by the Pig compiler. A good explanation about how Pig parses and compiles a Pig script can be found in this paper here SIGMOD PIG.    
+Optimisation was another goal. When writing a Pig script, it is not needed for the programmer to think within the Map/Reduce paradigm since Pig handles the transformation of the script to the particular map and reduce jobs. This also offers opportunities for automatic optimisations made by the Pig compiler. A good explanation about how Pig parses and compiles a Pig script can be found in the paper "Pig Latin: A Not-So-Foreign Language for Data Processing" Chapter 4 \footnote{""Pig Latin: A Not-So-Foreign Language for Data Processing" by Christopher Olston, Benjamin Reed, Utkarsh Srivastava, Ravi Kumar, Andrew Tomkins | published at SIGMOD’08 | download here http://www.cs.cmu.edu/~olston/publications/sigmod08.pdf"}.
 
 Pig features extensibility achieved by user-defined functions which are programmed in Java against the Pig interfaces and may be called within Pig Latin. Thus Pig has the same feature set as Java Hadoop.
+
+Pig uses the scripting language Pig Latin \footnote{"http://hadoop.apache.org/pig/docs/r0.2.0/piglatin.html"}. Syntax looks similar to SQL (which may be integrated into Pig additionally \footnote{"https://issues.apache.org/jira/browse/PIG-824"}), but Pig Latin is a data transformation language and therefore is more similar to the what the databe  
 
 A typical Pig line of code looks as following:
 ordered = ORDER words;
 
-Data transformation of one set (\"words\") with an operation (\"ORDER\") into a new set (\"ordered\"). 
-
-
-                           
-
-
-Pig Apache
-
-                                                    Pig is a platform for analyzing large data sets that consists of a high-level language for expressing data analysis programs, coupled with infrastructure for evaluating these programs. The salient property of Pig programs is that their structure is amenable to substantial parallelization, which in turns enables them to handle very large data sets.
-
-At the present time, Pig's infrastructure layer consists of a compiler that produces sequences of Map-Reduce programs, for which large-scale parallel implementations already exist (e.g., the Hadoop subproject). Pig's language layer currently consists of a textual language called Pig Latin, which has the following key properties:
-
-    * Ease of programming. It is trivial to achieve parallel execution of simple, "embarrassingly parallel" data analysis tasks. Complex tasks comprised of multiple interrelated data transformations are explicitly encoded as data flow sequences, making them easy to write, understand, and maintain.
-    * Optimization opportunities. The way in which tasks are encoded permits the system to optimize their execution automatically, allowing the user to focus on semantics rather than efficiency.
+It is the data transformation of one set (\"words\") with an operation (\"ORDER\") into a new set (\"ordered\").
+                                                                                                               
