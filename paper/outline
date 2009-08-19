@@ -1,11 +1,14 @@
-Introduction // Probemstellung, Überlegungen dazu
-Jaql
-Pig
-Scenario Markov Chain      
-Programming with Jaql
-Programming with Pig
-Benching Hadoop vs. Pig
-Scenario Wordcount
-Benching Hadoop vs. Jaql vs. Pig
+Introduction // Probemstellung, Überlegungen dazu 				Johan
+Jaql                                                      Konny
+Pig                                                       Johan
+The Cluster Setup                                         Konny
+Scenario Wordcount                                        Johan
+Benching Hadoop vs. Jaql vs. Pig                          Johan
+Scenario Markov Chain                                     Konny
+Programming with Jaql                                     Konny
+Programming with Pig                                      Johan
+Benching Hadoop vs. Pig                                   Johan
 
-Conclusion
+Conclusion                                                Konny                      
+
+Wir brauchen die Graphen!
