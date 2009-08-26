@@ -1,0 +1,8 @@
+\section{Cluster Setup}
+
+All benchmarks were taken on the same cluster consisting of ten nodes. We used Hadoop version 0.18.3 since neither
+Pig nor Jaql are compatible with the current version of Hadoop (0.20). Unfortunatly our nodes did vary in hardware,
+especially in CPU and memory. While we had two faster Dell Opteron 755, the other nodes were rather slow (Dell GX 620).
+Which caused some variation in performance when running with a small number of map or reduce tasks. In our oppinion,
+for deployment a homogenous cluster would be more suited. We ran the latest version of Pig (0.3.0) against a development
+snapshot of the upcomming Jaql 0.4\footnote{available at http://github.com/rkh/jaql}.
