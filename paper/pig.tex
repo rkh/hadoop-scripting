@@ -1,17 +1,22 @@
-Pig \footnote{"http://hadoop.apache.org/pig/"} is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!. 
+\section{Pig}
 
-It has an active community \footnote{"Mailinglist at pig-user@hadoop.apache.org"} and a growing ecosystem \footnote{"http://wiki.apache.org/pig/PigTools"}.
+Pig is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!. 
 
-The development of Pig took three key aspects into account. \footnote{"http://hadoop.apache.org/pig/"} The ease of programming was the major goal. Writing powerful scripts against very large data sets that are easy to write, read and maintain.
+It has an active community and a growing ecosystem.
 
-Optimisation was another goal. When writing a Pig script, it is not needed for the programmer to think within the Map/Reduce paradigm since Pig handles the transformation of the script to the particular map and reduce jobs. This also offers opportunities for automatic optimisations made by the Pig compiler. A good explanation about how Pig parses and compiles a Pig script can be found in the paper "Pig Latin: A Not-So-Foreign Language for Data Processing" Chapter 4 \footnote{""Pig Latin: A Not-So-Foreign Language for Data Processing" by Christopher Olston, Benjamin Reed, Utkarsh Srivastava, Ravi Kumar, Andrew Tomkins | published at SIGMOD’08 | download here http://www.cs.cmu.edu/~olston/publications/sigmod08.pdf"}.
+The development of Pig took three key aspects into account. The ease of programming was the major goal. Writing powerful scripts against very large data sets that are easy to write, read and maintain.~\cite{pigWebsite}
+
+Optimisation was another goal. When writing a Pig script, it is not needed for the programmer to think within the Map/Reduce paradigm since Pig handles the transformation of the script to the particular map and reduce jobs. This also offers opportunities for automatic optimisations made by the Pig compiler. A good explanation about how Pig parses and compiles a Pig script can be found in the paper ``Pig Latin: A Not-So-Foreign Language for Data Processing'' Chapter 4~\cite{pigNotForeign}.
 
 Pig features extensibility achieved by user-defined functions which are programmed in Java against the Pig interfaces and may be called within Pig Latin. Thus Pig has the same feature set as Java Hadoop.
 
-Pig uses the scripting language Pig Latin \footnote{"http://hadoop.apache.org/pig/docs/r0.2.0/piglatin.html"}. Syntax looks similar to SQL (which may be integrated into Pig additionally \footnote{"https://issues.apache.org/jira/browse/PIG-824"}), but Pig Latin is a data transformation language and therefore is more similar to the what the databe  
+Pig uses the scripting language Pig Latin~\cite{pigManual}. Syntax looks similar to SQL (which may be integrated into Pig additionally~\cite{pigSql}), but Pig Latin is a data transformation language and therefore is more similar to the what the databe  
 
-A typical Pig line of code looks as following:
+A typical Pig line of code looks like listing \ref{pigsample}.
+
+\begin{lstlisting}[language=pig,caption=A typical Pig line of code,float,label=pigsample]
 ordered = ORDER words;
+\end{lstlisting}
 
-It is the data transformation of one set (\"words\") with an operation (\"ORDER\") into a new set (\"ordered\").
+It is the data transformation of one set (``words'') with an operation (``ORDER'') into a new set (``ordered'').
                                                                                                                
