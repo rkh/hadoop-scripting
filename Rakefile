@@ -8,4 +8,9 @@ task :pdf do
     end
     sh "open paper.pdf || exit 0"
   end
+end 
+
+desc "Spell check paper"
+task :spellcheck do
+  Dir.glob("paper/*.tex") { |f| sh "aspell -c #{f}" }
 end
