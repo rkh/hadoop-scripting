@@ -10,10 +10,10 @@ most cases is outdated and incomplete. In addition to this, Jaql was undergoing
 major changes in the time of writing.
 
 Even though available, there is no need to write in a strict map/reduce pattern in
-jaql. At the point of execution (i.e. the end of a query statement) Jaql transformes the
+jaql. At the point of execution (i.e. the end of a query statement) Jaql transforms the
 parsed statement into another, equivalent but optimized statement. This step is
-comperable to a query optimizer in modern database management systems. The optimized
-query can in turn be transformed back to Jaql code, which is usefull for debugging.
+comparable to a query optimizer in modern database management systems. The optimized
+query can in turn be transformed back to Jaql code, which is useful for debugging.
 
 Jaql can be extended with user defined functions, that can be written either in Java or
 in Jaql itself. However, it is not possible to use Jaql as a general-purpose programming
@@ -30,7 +30,7 @@ currently running hadoop cluster in which the node you run jaql on takes part in
 One of the main features of Jaql is the ability to read from and write to different
 storage types, currently the local file system, the Hadoop Distributed File System,
 HBase (Hadoop's BigTable equivalent) and HTTP. Since Jaql is based on JSON, reading
-from HTTP allowes easy integration of web services like Wikipedia or Flickr, that offer
+from HTTP allows easy integration of web services like Wikipedia or Flickr, that offer
 a JSON API.
 
 \begin{lstlisting}[language=jaql,caption=A sample Jaql query,float,label=jaqlsample]
