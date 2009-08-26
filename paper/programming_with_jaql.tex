@@ -1,0 +1,25 @@
+\section{Programming with Jaql} 
+
+\begin{lstlisting}[language=jaql,caption=Wordcount in Jaql,float,label=jaqlwc]
+read($src)
+  -> expand splitArr($, " ")
+  -> group by $w = ($) into [$w, count($)];
+\end{lstlisting}
+
+Jaql features two ways of passing parameters to a function. You can write the parameters
+in brackets after the function name, as known from most other programming languages, i.e.\
+\lstinline[language=jaql]!foo("bar")!. However, Jaql also features a new pipe syntax, more
+consistent with the way build in Jaql statements are written. The value you ``pipe into''
+a function will be past as the first argument, therefore \lstinline[language=jaql]!foo("bar", "baz")!
+is equivalten to \lstinline[language=jaql]!"bar" -> foo("baz")!.
+
+All values, either arguments or return values, are either JSON objects or Jaql functions.
+Every function in Jaql returns a value. Jaql gives advanced functionallity for querying, transforming
+and aggregating those values. An example can be seen in listing \ref{jaqlwc}. Note that
+operations like {\tt expand} or {\tt group by} will loop through all element of the given array
+(and potentially split this operation on multiple map/reduce tasks) you will have {\tt\$} referring
+to the current element.
+
+A statement is terminated by a semicolon and will at that point be optimized, as mentioned earlier.
+However, instead of executing the statement, Jaql is able to return the optimized Jaql code by calling
+{\tt explain} on the statement.
