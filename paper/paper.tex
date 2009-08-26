@@ -31,6 +31,7 @@
 % jaql highlighting
 \lstdefinelanguage{jaql}{
   morekeywords={fn,read,write,each,into},
+  morecomment=[l]{//},
   literate={->}{$\rightarrow$}{2},
   sensitive=false,
   morestring=[b]",
@@ -38,7 +39,7 @@
 
 % pig highlighting
 \lstdefinelanguage{pig}[]{sql}{
-  sensitive=false
+  sensitive=true
 }
 
 \begin{document}
@@ -60,7 +61,6 @@
   
   \input{abstract.tex}
   
-  %\begin{multicols}{2}
   \input{introduction.tex}            % johan
   \input{jaql.tex}                    % konstantin
   \input{pig.tex}                     % johan
@@ -68,11 +68,10 @@
   \input{scenario_wordcount.tex}      % johan
   %\input{benchmark_wordcount.tex}    % johan
   %\input{scenario_markov.tex}        % konstantin
-  %\input{programming_with_jaql.tex}  % konstantin
+  \input{programming_with_jaql.tex}   % konstantin
   \input{programming_with_pig.tex}    % johan
   %\input{benchmark_markov.tex}       % johan
-  %\input{conclusion.tex}             % konstantin 
-  %\end{multicols}
+  \input{conclusion.tex}              % konstantin 
 
   %
 %  \section{Lessons learned}
