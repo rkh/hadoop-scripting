@@ -11,10 +11,10 @@ in brackets after the function name, as known from most other programming langua
 \lstinline[language=jaql]!foo("bar")!. However, Jaql also features a new pipe syntax, more
 consistent with the way build in Jaql statements are written. The value you ``pipe into''
 a function will be past as the first argument, therefore \lstinline[language=jaql]!foo("bar", "baz")!
-is equivalten to \lstinline[language=jaql]!"bar" -> foo("baz")!.
+is equivalent to \lstinline[language=jaql]!"bar" -> foo("baz")!.
 
 All values, either arguments or return values, are either JSON objects or Jaql functions.
-Every function in Jaql returns a value. Jaql gives advanced functionallity for querying, transforming
+Every function in Jaql returns a value. Jaql gives advanced functionality for querying, transforming
 and aggregating those values. An example can be seen in listing \ref{jaqlwc}. Note that
 operations like {\tt expand} or {\tt group by} will loop through all element of the given array
 (and potentially split this operation on multiple map/reduce tasks) you will have {\tt\$} referring
