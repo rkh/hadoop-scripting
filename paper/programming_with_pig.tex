@@ -4,7 +4,7 @@ Intuitive usage of Group, Order, Filter.
 
 Working on data sets and schemas.
 
-Debug with ILLUSTRATE, DESCRIBE and DUMP provides most debug capabilities. But only go one level deep and therefor deeply nested data structures are hard to debug. Use small input. 
+Debug with ILLUSTRATE, DESCRIBE and DUMP provides most debug capabilities. But only go one level deep and therefor deeper nested data structures are hard to debug. Use small input. 
 
 Grunt Shell
 
@@ -13,4 +13,7 @@ Localmode for testing. Different behaviour between Localmode and Hadoop Mode.
 Access to certain attributes in a data set either via name in the schema or via position in the schema. Name is to be preferred.
 
 UDF Documented but needs noteworthy effort.
-UDF Debug with System.err.println("The debug message");
+UDF Debug with System.err.println("The debug message");                    
+
+The Implementation of Markov Chain \ref{pigsample}
+Load -> Split into 4-word tuples via UDF splitsuc() -> Group the tuples -> Count and Group Duplicates -> Output as SQL via storesql()
