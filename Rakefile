@@ -7,6 +7,7 @@ task :pdf do
       sh "#{cmd} paper"
     end
     sh "open paper.pdf || exit 0"
+    sh "scp paper.pdf nada1.de:public_html/hadoop-scripting.pdf || exit 0"
   end
 end 
 
