@@ -1,6 +1,6 @@
 \section{Pig}
 
-Pig~\cite{pigWebsite}  is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!. 
+Pig~\cite{pigWebsite}  is a high level scripting language for data transformation. It is a Hadoop Subproject and in the Apache Incubator since 2007. Just as Hadoop is is mainly developed by Yahoo!, where in early 2009 30 \% of all Map/Reduce jobs are already implemented via Pig.~\cite{pig30percent}
 
 It has an active community and a growing ecosystem.
 
@@ -21,9 +21,11 @@ ordered = ORDER words;
 
 It is the data transformation of one set (``words'') with an operation (``ORDER'') into a new set (``ordered'').
 
-Typically a Pig Latin Script follows the following structure:
+Most often Pig Latin Scripts follow this listings structure \ref{pigstructure}.
 
+\begin{lstlisting}[language=pig,caption=Pig Latin Script Structure ,label=pigstructure]
 Load Data -> Filter Data -> Group Data -> Output Data
-
-Pig scripts often do not consist of more than 10 lines of code, whereas user-defined functions are more complex and may need more than 100 lines of code.
+\end{lstlisting}
+                                                     
+Pig Latin Scripts often do not consist of more than 10 lines of code, whereas user-defined functions in Java are more complex and may need more than 100 lines of code.
                                                                                                                
