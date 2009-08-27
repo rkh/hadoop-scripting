@@ -13,6 +13,9 @@ task :pdf do
       osascript)) || exit 0
     EOS
   end
+end
+
+file "_r.dat" => [proc { |n| n.sub(/_r\.dat$/, ".dat") }] do |t|
 end 
 
 desc "Spell check paper"
