@@ -13,19 +13,5 @@ Pig features extensibility achieved by user-defined functions which are programm
 
 Pig uses the scripting language Pig Latin~\cite{pigManual}. The syntax looks similar to SQL (which may be integrated into Pig additionally~\cite{pigSql}), albeit Pig Latin is a data transformation language and therefore works similar to the database query optimiser in modern database managament systems.
 
-A typical Pig Latin line of code looks like listing \ref{pigsample}.
-
-\begin{lstlisting}[language=pig,caption=A typical Pig line of code,label=pigsample]
-ordered = ORDER words;
-\end{lstlisting}
-
-It is the data transformation of one set (``words'') with an operation (``ORDER'') into a new set (``ordered'').
-
-Most often Pig Latin Scripts follow this listings structure \ref{pigstructure}.
-
-\begin{lstlisting}[language=pig,caption=Pig Latin Script Structure ,label=pigstructure]
-Load Data -> Filter Data -> Group Data -> Output Data
-\end{lstlisting}
-                                                     
 Pig Latin Scripts often do not consist of more than 10 lines of code, whereas user-defined functions in Java are more complex and may need more than 100 lines of code.
                                                                                                                
