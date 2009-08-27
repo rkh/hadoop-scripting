@@ -7,7 +7,11 @@ task :pdf do
       sh "#{cmd} paper"
     end
     sh "open paper.pdf || exit 0"
-    sh "scp paper.pdf nada1.de:public_html/hadoop-scripting.pdf || exit 0"
+    sh <<-EOS
+      (scp paper.pdf nada1.de:public_html/hadoop-scripting.pdf &&
+      (echo 'tell application "Adium" to send the active chat message "http://nada1.de/~konstantin/hadoop-scripting.pdf"' |
+      osascript)) || exit 0
+    EOS
   end
 end 
 
