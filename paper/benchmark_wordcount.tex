@@ -2,7 +2,13 @@
 
 We have been running our Hadoop Java, Pig and Jaql scripts against a series of Wikipedia articles with a size of 10 Mb, 50 Mb, 100 Mb, 500 Mb, 1000 Mb, 2000 Mb, 3000 Mb, 4000 Mb and 5000 Mb and 4 runs for each size.
 
-%{``GRAPH OF THE BENCHMARK''}
+\begin{figure}[tb]
+  \begin{center}
+    \includegraphics[width=\textwidth]{../benchmarks/wordcount}
+  \end{center}
+  \caption{Processing Speed in Relation to Number of Reducers}
+  \label{fig:reducers}
+\end{figure}
 %{``TABLE WITH RESULTS''}
 
 Worth noting are:
