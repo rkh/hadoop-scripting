@@ -16,6 +16,17 @@ task :pdf do
 end
 
 file "_r.dat" => [proc { |n| n.sub(/_r\.dat$/, ".dat") }] do |t|
+  File.open(t.source) do |src|
+    File.open(t.name, "w") do |target|
+      src.each_line do |line|
+        next if line =~ /^\s*$|^#/
+        input = line.split(/\s+/)
+        size = input.shift
+        input.map! { |h,m,s| h*60*60 + m*60 + s }
+        
+      end
+    end
+  end
 end 
 
 desc "Spell check paper"
