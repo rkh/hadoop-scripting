@@ -2,10 +2,21 @@
 
 The Implementation of Markov Chain \ref{pigmarkovstructure}   
                          
-\begin{lstlisting}[language=pig,caption=Pig Latin Script Structure ,label=pigmarkovstructure]    
-LOAD -> Split into 4-word tuples via SPLITSUC() -> GROUP the tuples -> Count and Group Duplicates -> Output as SQL via STORESQL()
+\begin{lstlisting}[language=pig,caption=Markov Chain in Pig Latin,label=pigmarkovstructure]    
+wikipedia = LOAD 'wikipedia' USING PigStorage('\t') AS (row:chararray);
+tuples = FOREACH wikipedia GENERATE FLATTEN(splitsuc.SPLITSUC(*));
+grouped = GROUP tuples by (word1, word2, word3, word4) PARALLEL 16;
+grouped_counted = FOREACH grouped GENERATE group, COUNT(tuples);
+STORE grouped_counted INTO 'wikipedia.sql' USING splitsuc.STORESQL();
 \end{lstlisting}
 
 Two UDFs had to be programmed. 
-The first one is {\tt SPLITSUC()}, that is called within a {\tt FOREACH} Loop. It is splitting .
-The other one is {\tt STORESQL()} 
+\begin{itemize}
+\item The first one is {\tt SPLITSUC()}, that is called within a {\tt FOREACH} Loop, processing each row of the input. It is splitting the rows into 4-word tuples with a tuple for every word with its three predecessors.
+\item The other one is {\tt STORESQL()}, that is transforming the 4-tuples into SQL Multi-INSERT statements ready to be imported into a database like MySQL. The number of output files is determined by the number of reduce jobs.
+\end{itemize}
+
+
+
+
+
