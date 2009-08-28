@@ -1,4 +1,11 @@
 \section{Programming Markov Chain with Pig}                                              
 
-The Implementation of Markov Chain \ref{pigsample}
-Load -> Split into 4-word tuples via UDF splitsuc() -> Group the tuples -> Count and Group Duplicates -> Output as SQL via storesql()
+The Implementation of Markov Chain \ref{pigmarkovstructure}   
+                         
+\begin{lstlisting}[language=pig,caption=Pig Latin Script Structure ,label=pigmarkovstructure]    
+{\tt LOAD} -> Split into 4-word tuples via UDF {\tt SPLITSUC()} -> {\tt GROUP} the tuples -> Count and Group Duplicates -> Output as SQL via UDF {\tt STORESQL()}
+\end{lstlisting}
+
+Two UDFs had to be programmed. 
+The first one is {\tt SPLITSUC()}, that is called within a {\tt FOREACH} Loop. It is splitting .
+The other one is {\tt STORESQL()} 
