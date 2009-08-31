@@ -11,3 +11,9 @@ Execute ./markov.sh
 For generating the pdf:
 Make sure you have latex, gnuplot and ruby installed.
 Execute rake
+
+For generating the Pig UDF:
+cd splitsuc
+javac -cp pig.jar SPLITSUC.java STORESQL.java
+cd ..
+jar -cf splitsuc.jar splitsuc
