@@ -1,13 +1,13 @@
 \section{Benchmark: Markov Chain}
 
-We have been running a Hadoop Java and a Pig implementation on the cluster against a series of Wikipedia articles with a size of 10 Mb to 2000 Mb. To minimise benchmark errors we have done 4 runs for each size.
-
-\begin{figure}[H]
+\begin{figure}[tb]
   \begin{center}
     \includegraphics[width=\textwidth]{../benchmarks/markov}
   \end{center}
   \caption{Markov Chain benchmark results}
   \label{fig:reducers}
 \end{figure}
+
+We have been running a Hadoop Java and a Pig implementation on the cluster against a series of Wikipedia articles with a size of 10 Mb to 2000 Mb. To minimise benchmark errors we have done 4 runs for each size.
 
 It is clearly visible, that Pig is slower than the native Java implementation.
