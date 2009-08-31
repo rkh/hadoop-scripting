@@ -1,12 +1,11 @@
-task :default => :pdf
+task :default => [:plot, :pdf]
 
 desc "Generate PDF from LaTeX"
 task :pdf do
   chdir("paper") do
-    %w(pdflatex bibtex pdflatex).each do |cmd|
-      sh "#{cmd} paper || exit 0"
+    %w(latex bibtex latex latex dvipdf).each do |cmd|
+      sh "#{cmd} paper"
     end
-    sh "pdflatex paper"
     sh "open paper.pdf || exit 0"
     sh <<-EOS
       (scp paper.pdf nada1.de:public_html/hadoop-scripting.pdf &&
@@ -61,7 +60,7 @@ namespace "plot" do
   def plot(name)
     LANG[name].each { |l| File.open("benchmarks/#{l}_#{name}.dat", "w") { |f| f << bench(name, l) } } 
     chdir("benchmarks") { sh "gnuplot #{name}.p" }
-    sh "open benchmarks/#{name}.png || exit 0"
+    #sh "open benchmarks/#{name}.eps || exit 0"
   end
   
   task "wordcount" do
@@ -73,6 +72,8 @@ namespace "plot" do
   end
   
 end
+
+task :plot => %w[plot:wordcount plot:markov]
 
 file "benchmarks/benchmark.png" => %w[benchmarks/java_r.dat benchmarks/jaql_r.dat benchmarks/pig_r.dat] do
   chdir("benchmarks") { sh "gnuplot benchmark.p" }
