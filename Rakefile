@@ -18,15 +18,19 @@ end
 
 namespace "plot" do
   
-  def wordcount_raw
-    @wordcount_raw ||= File.open("benchmarks/benchmark_wordcount.txt") do |f|
-      {:java => {}, :jaql => {}, :pig => {}}.tap do |results|
+  LANG = {:wordcount => [:java, :jaql, :pig], :markov => [:java, :pig]}
+  
+  def raw(name)
+    @raw ||= {}
+    @raw[name] ||= File.open("benchmarks/benchmark_#{name}.txt") do |f|
+      {}.tap do |results|
         size = nil
         f.each_line do |line|
           next if line =~ /^\s*$|^#/ 
           new_size, run, *rest = line.split /\s+/
           size = new_size.to_i unless new_size.empty?
-          [:java, :jaql, :pig].each_with_index do |l,i|
+          LANG[name].each_with_index do |l,i|
+            results[l] ||= {}
             results[l][size] ||= []
             results[l][size][run.to_i-1] = in_seconds rest[i]
           end 
@@ -47,20 +51,25 @@ namespace "plot" do
     ary.inject(0) { |s,i| s+i } / ary.size
   end
   
-  def wordcount(lang)
-    wordcount_raw[lang].inject("") do |out, (size, values)|
+  def bench(name, lang)
+    raw(name)[lang].inject("") do |out, (size, values)|
       out << size.to_s << "\t" << time(avg(values)) << "\t" << 
         values.minmax.reverse.map! { |v| time(v) }.join("\t") << "\n"
     end
   end
   
+  def plot(name)
+    LANG[name].each { |l| File.open("benchmarks/#{l}_#{name}.dat", "w") { |f| f << bench(name, l) } } 
+    chdir("benchmarks") { sh "gnuplot #{name}.p" }
+    sh "open benchmarks/#{name}.png || exit 0"
+  end
+  
   task "wordcount" do
-    [:java, :jaql, :pig].each { |l| File.open("benchmarks/#{l}_wordcount.dat", "w") { |f| f << wordcount(l) } } 
-    chdir("benchmarks") { sh "gnuplot wordcount.p" }
-    sh "open benchmarks/wordcount.png || exit 0"
+    plot :wordcount
   end
   
   task "markov" do
+    plot :markov
   end
   
 end

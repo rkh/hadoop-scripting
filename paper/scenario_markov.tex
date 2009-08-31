@@ -1,3 +1,3 @@
 \section{Scenario: Markov Chain} 
 
-We split text into word tuples with key words and successor.
+Markov Chains can be used, among other things, to generate random texts most readers will not always identify as such. For doing so an input text is needed. This text will be spilt in into phrases containing a couple of words as index phrase (usually one to three) and all the words directly following the phrase in the input text. The text generating function will for a given phrase return one of the words following the phrase. The phrase and the result will become the generated text, while the last words of the text will become the new phrase for choosing the next word. In this scenario we want to generate such an index in form of a SQL dump.

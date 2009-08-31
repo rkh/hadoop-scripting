@@ -11,14 +11,13 @@
 \usepackage{float} % figures
 \usepackage[usenames,dvipsnames]{color}
 
-%\restylefloat{figure}
 \setlength{\parskip}{0.2em}
 
 % code style
 \lstset{
   showstringspaces=true,
   stringstyle=\ttfamily\color{CadetBlue},
-  keywordstyle=\color{BurntOrange}\bfseries,
+  keywordstyle=\color{Blue}\bfseries,
   commentstyle=\color{CadetBlue}\slshape,
   numbers=left,
   numberstyle=\tiny\color{LimeGreen},
@@ -30,7 +29,7 @@
 
 % jaql highlighting
 \lstdefinelanguage{jaql}{
-  morekeywords={fn,read,write,each,into},
+  morekeywords={fn,each,into,transform,expand,group,by},
   morecomment=[l]{//},
   literate={->}{$\rightarrow$}{2},
   sensitive=false,
@@ -44,53 +43,40 @@
 
 \begin{document}
   
-  \pagestyle{headings}  % switches on printing of running heads
-  %\mainmatter % start of the contributions
+  \pagestyle{headings}
   \title{Hadoop Scripting Languages}
   \subtitle{Domain Specific Languages Pig and Jaql}
-  \titlerunning{Hadoop Scripting}  % abbreviated title (for running head)
+  \titlerunning{Hadoop Scripting}
   \author{Johan Uhle, Konstantin Haase}
   \date{\today}
-  \authorrunning{Uhle, Haase}   % abbreviated author list (for running head)
-  \tocauthor{Johan Uhle, Konstantin Haase (Hasso-Plattner-Institute)}
-  \institute{Seminar ``Map/Reduce Algorithms on Hadoop'',\\
+  \authorrunning{Uhle, Haase}
+  \tocauthor{Johan Uhle, Konstantin Haase (Hasso Plattner Institute)}
+  \institute{
+    Seminar ``Map/Reduce Algorithms on Hadoop'',\\
     Research Group Information Systems,
     Alexander Albrecht, Prof. Felix Naumann,
     Hasso-Plattner-Institut, Universität Potsdam,
     D-14482 Potsdam, Germany,\\
-    \email{\{johan.uhle, konstantin.haase\}@student.hpi.uni-potsdam.de}}
+    \email{\{johan.uhle, konstantin.haase\}@student.hpi.uni-potsdam.de}
+  }
   
-  \maketitle
-  
-  \input{abstract.tex}
-  
-  \input{introduction.tex}            % johan
-  \input{jaql.tex}                    % konstantin  
-  \input{programming_with_jaql.tex}   % konstantin    
-  \input{pig.tex}                     % johan    
-  \input{programming_with_pig.tex}    % johan  
-  \input{cluster.tex}                 % konstantin
-  \input{scenario_wordcount.tex}      % johan
-  \input{benchmark_wordcount.tex}    % johan
-  \input{scenario_markov.tex}        % konstantin 
-  \input{programming_markov_with_jaql.tex}   % konstantin  
-  \input{programming_markov_with_pig.tex}    % johan  
-  \input{benchmark_markov.tex}       % johan
-  \input{conclusion.tex}              % konstantin 
+  \maketitle  
+  \input{abstract.tex}  
+  \input{introduction.tex}                    % johan
+  \input{jaql.tex}                            % konstantin
+  \input{programming_with_jaql.tex}           % konstantin
+  \input{pig.tex}                             % johan
+  \input{programming_with_pig.tex}            % johan
+  \input{cluster.tex}                         % konstantin
+  \input{scenario_wordcount.tex}              % johan
+  \input{benchmark_wordcount.tex}             % johan
+  \input{scenario_markov.tex}                 % konstantin
+  \input{programming_markov_with_jaql.tex}    % konstantin
+  \input{programming_markov_with_pig.tex}     % johan
+  \input{benchmark_markov.tex}                % johan
+  \input{conclusion.tex}                      % konstantin
 
-  %
-%  \section{Lessons learned}
-%  \begin{figure}[tb]
-%    \begin{center}
-%      %\includegraphics{reducers}
-%    \end{center}
-%    \caption{Processing Speed in Relation to Number of Reducers}
-%    \label{fig:reducers}
-%  \end{figure} 
-  
-  %\nocite{*}
   \bibliographystyle{splncs}
-  %\bibliographystyle{authordate1}
   \bibliography{hadoop}
   \clearpage
 \end{document}
