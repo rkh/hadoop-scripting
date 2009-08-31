@@ -14,7 +14,8 @@ For the implementation two UDFs had to be programmed.
 \item The other one is {\tt STORESQL()}, that is transforming the 4-tuples into SQL Multi-INSERT statements ready to be imported into a database. The number of output files is determined by the number of reduce jobs.
 \end{itemize}
 
-These UDFs each are about 80 lines of code and consumed most of the development time needed for implementing the algorithm. Writing the Pig Latin code was a fairly easy task, since it only meant straight-forward implementing the abstract algorithm.
+These UDFs each are about 80 lines of code and consumed most of the development time needed for implementing the algorithm. Writing the Pig Latin code was a fairly easy task, since the necessary steps were straight-forward: \\
+{\bt 1.} Split into 4-tuples {\bt 2.} Group by 4-tuples {\bt 3}. Count the occurrences of each 4-tuple
 
 
 
