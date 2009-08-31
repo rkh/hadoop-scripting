@@ -1,17 +1,19 @@
-\section{Conclusion}                      
-                                                                                                          
-Similarities and Differences between Pig and Jaql ... 
+\section{Conclusion}
 
-Both abstract from the Map/Reduce paradigm towards the actual data processing tasks.
+Pig and Jaql both succeed in the task of abstracting from the Map/Reduce pattern towards the actual data processing tasks.
 
-Since Pig offers a rich ecosystem it therefore at the moment beats Jaql in terms of  ``programmer friendliness''. 
+Pig Latin is limited in expressiveness and a fallback to UDFs is often needed, whereas Jaql provides a
+richer feature set being extendable with pure Jaql.
 
-Pig faste at limits. Jaql stay within Jaql longer and don't fallback to Java UDF.
+The time consuming part of developing in Pig is writing UDFs. If a library of commonly used UDFs is present (i.e. Pig's Open Source UDF Repository PiggyBank~\cite{pigPiggyBank} or company specific in-house librarys) a Pig Latin script is composed in very short time. For a lot of common tasks, native Pig Latin statements already are powerful enough and UDFs aren't needed.
 
-Time consuming part with Pig is writing UDFs. If library of commonly used UDFs is present (e.g. Open-Source Pig UDF Repository PiggyBank or company specific in-house) a Pig Latin script is composed in very short time. For a lot of common tasks, native Pig statements already are powerful enough and UDFs aren't needed.      
+Furthermore we would prefer Pig for ``easy'' querying tasks, since basic functionality is quickly accessible and well documented. But we think, that prototyping of more complex problems is faster done in Jaql than in Pig.
 
-Since Pig and Jaql are still in development improvements may be seen, especially in performance, where both aim on competing with Java performance.
+Since Pig and Jaql are still in development improvements may be seen, especially in performance, where
+both aim on competing with native Java.
 
-In conclusion, Pig and Jaql both ease programming for Hadoop by allowing rapid development, compared to Hadoop's
-Java interface, but they are both in an early stage of development and cannot yet fully compete with
-pure Java Hadoop performance in our macro benchmarks.
+While Pig seems to be production-ready Jaql currently appears to be more of a research project. 
+
+In conclusion, Pig and Jaql both ease programming for Hadoop by allowing rapid development, compared to
+Hadoop's Java interface, but they are both in an early stage of development and cannot yet fully
+compete with pure Java Hadoop performance in our macro benchmarks.
