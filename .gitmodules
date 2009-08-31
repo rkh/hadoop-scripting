@@ -1,3 +1,0 @@
-[submodule "vendor/mw_api"]
-	path = vendor/mw_api
-	url = git://github.com/rkh/mw_api.git
