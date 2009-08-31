@@ -25,8 +25,7 @@ $markov = fn($lines) (
 );
 
 // mini cluster
-// hdfsShell("-copyFromLocal input markov_input") * 0;
-// $source = "markov_input";
+// hdfsShell("-copyFromLocal input corpera/current.dat") * 0;w
 
 // real cluster
 $source = "corpera/current.dat";
