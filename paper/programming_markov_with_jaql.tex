@@ -1,7 +1,6 @@
-\section{Programming Markov Chain with Jaql}             
+\section{Programming Markov Chain with Jaql} 
+\lstinputlisting[language=jaql,caption=Markov Chain in Jaql,label=jaqlmrkv]{../jaql/markov_sql.jaql}
 
-\lstinputlisting[language=jaql,caption=Markov Chain in Jaql,label=jaqlmrkv,float]{../jaql/markov_sql.jaql}
+Our final Jaql script for generating a Markov Chain index can be seen in listing \ref{jaqlmrkv}. In line 42 the script will call the self function \lstinline[language=jaql]!$markov!, defined in line 19--25, on an array of strings. Each string represents a line from the input file. All lines will be replaced with the results of \lstinline[language=jaql]!$markovLine! in line 21, which are tuples with four words each. Then identical tuples will be aggregated into an SQL expression, containing the tuple itself and number of appearances.       
 
-Our final Jaql script for generating a Markov chain index can be seen in listing \ref{jaqlmrkv}. During development we've created multiple different scripts all aiming to create such an index. Unfortunatly, we were not able to run any of those scripts with more than one map task\footnote{read: with no more than 64 MB of input data}, therefore we did not run benchmarks against Pig and Java.
-
-The script will call the self defined function \lstinline[language=jaql]!$markov()! on an array of strings, each string being a line in the input file. Each of this lines will be replaces with the results of \lstinline[language=jaql]!$markovLine()!, which are tuples with four words each, then (similar to wordcount) aggregate identical tuples into an SQL expression, containing the tuple itself and number of appearances of that specific tuple.
+During development we have created multiple version of this script. Unfortunatly, we were not able to run any version on our Hadoop cluster with more than one map task\footnote{read: with no more than 64 MB of input data}, therefore we did only run benchmarks for Pig and Java.

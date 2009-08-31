@@ -1,12 +1,8 @@
 \section{Benchmark: Wordcount}            
 
-We have been running our Hadoop Java, Pig and Jaql scripts against a series of Wikipedia articles with a size of 10 Mb, 50 Mb, 100 Mb, 500 Mb, 1000 Mb, 2000 Mb, 3000 Mb, 4000 Mb and 5000 Mb and 4 runs for each size.
+We have been running our Hadoop Java, Pig and Jaql scripts against a series of Wikipedia articles with a sizes between 10 Mb and 5000 Mb and 4 runs for each size.
 
-%{``TABLE WITH RESULTS''}
-
-Worth noting are:
-
-\begin{figure}[H]
+\begin{figure}[h!]
   \begin{center}
     \includegraphics[width=\textwidth]{../benchmarks/wordcount}
   \end{center}
@@ -14,4 +10,4 @@ Worth noting are:
   \label{fig:reducers}
 \end{figure}
 
-Java has nearly no increase in runtime from 10 to 100 Mb. On the other hand Pig and Jaql already experience significant runtime increases.
+It can be observed that Java performes better by an order of magnitude, compared to Pig and Jaql, which do not differ that much from each other. Apparently all do scale well, since execution time is growing slower than input size for all three implementations.
