@@ -607,6 +607,8 @@ FUNCTION {article}
   stupid.colon
   format.title "title" output.check
   new.block
+  howpublished address new.block.checkb
+  howpublished output
   crossref missing$
     { journal emphasize "journal" output.check
       format.vol.num output
