@@ -1,17 +1,33 @@
-\section{Programming with Jaql} 
+\section{Programming with Jaql}
+
+One of the main features of Jaql is the ability to read from and write to different
+storage types, currently the local file system, the Hadoop Distributed File System,
+HBase and HTTP. Since Jaql is based on JSON, reading
+from HTTP allows easy integration of web services like Wikipedia or Flickr, that offer
+a JSON API.
+
+\begin{lstlisting}[language=jaql,caption=A sample Jaql query,float,label=jaqlsample]
+$source = "http://server/api.php?format=json\&query=foo";
+read(http($source)) 
+  -> transform each $["name"]
+  -> write(hdfs("output.dat"));
+\end{lstlisting}
+
+A typical Jaql request can be seen in listing \ref{jaqlsample}. Jaql ships with an
+interactive shell (read-eval-print loop). 
 
 Jaql features two ways of passing parameters to a function. You can write the parameters
-in brackets after the function name, as known from most other programming languages, i.e.\
+in brackets after the function name, as known from most other programming languages, i.e.
 \lstinline[language=jaql]!foo("bar")!. However, Jaql also features a new pipe syntax, more
-consistent with the way build in Jaql statements are written. The value you ``pipe into''
+consistent with the way built in Jaql statements are written. The value you ``pipe into''
 a function will be past as the first argument, therefore \lstinline[language=jaql]!foo("bar", "baz")!
 is equivalent to \lstinline[language=jaql]!"bar" -> foo("baz")!.
 
-All values, either arguments or return values, are either JSON objects or Jaql functions.
-Every function in Jaql returns a value. Jaql gives advanced functionality for querying, transforming
+All values, either arguments or return values, are JSON objects or Jaql functions.
+Every function in Jaql returns a value. Jaql offers advanced functionality for querying, transforming
 and aggregating those values. An example can be seen in listing \ref{jaqlwc}. Note that
 operations like {\tt expand} or {\tt group by} will loop through all element of the given array
-(and potentially split this operation on multiple map/reduce tasks) you will have {\tt\$} referring
+and potentially split this operation on multiple Map/Reduce tasks. Within a loop {\tt\$} is referring
 to the current element.
 
 \begin{lstlisting}[language=jaql,caption=Wordcount in Jaql,label=jaqlwc]

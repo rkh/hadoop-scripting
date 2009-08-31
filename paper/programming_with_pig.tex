@@ -1,27 +1,25 @@
 \section{Programming With Pig}
 
-Two ways are possbile for using Pig. One is Grunt, an interactive Shell for Pig. The other way is evaluating an external script with Pig. Both ways work in localmode (Pig standalone) and in Hadoop Mode.
-                              
-A typical Pig Latin line of code looks like listing \ref{pigsample}.
+Pig offers an interactive shell called Grunt and a command line tool for running external scripts. Both ways work in local mode (Pig standalone) and on a Hadoop cluster.
 
 \begin{lstlisting}[language=pig,caption=A typical Pig line of code,label=pigsample]
 ordered = ORDER words;
-\end{lstlisting}
+\end{lstlisting} 
 
-This is the data transformation of one set (``{\tt words}'') with an operation (``{\tt ORDER}}'') into a new set (``{\tt ordered}''). The input data sets are always on the right side of the assignment. The resulting output data set is always on the left side.
+The code in listing \ref{pigsample} shows the typical structure of a pig statement. It is the data transformation of one set (``{\tt words}'') with an operation (``{\tt ORDER}'') into a new set (``{\tt ordered}''). The input data sets are always on the right side of the assignment. The resulting output data set is always on the left side.
 
-Most often Pig Latin Scripts naturally follow this listings structure \ref{pigstructure}.
+Most often Pig Latin Scripts naturally follow the structure of listing \ref{pigstructure}.
 
-\begin{lstlisting}[language=pig,caption=Pig Latin Script Structure ,label=pigstructure]
+\begin{lstlisting}[language=jaql,caption=Pig Latin Script Structure ,label=pigstructure]
 Load Data -> Manipulate Data -> Group Data -> Output Data
 \end{lstlisting}
                                                        
-A Pig Latin script is always started by a {\tt LOAD} statement. The loaded data is manipulated via {\tt FILTER}, {\tt FOREACH ... GENERATE} or {\tt DISTINCT} statements or with the help of user-defined functions. Afterwards the Data is often grouped. Then the cycle either starts all over again e.g. with additional data being joined or otherwise the resulting data set is written to the output with a {\tt STORE} statement. Of course this structure may be altered depending on the problem.     
+A Pig Latin script always begins with a {\tt LOAD} statement. The loaded data is manipulated via {\tt FILTER}, {\tt FOREACH GENERATE} or {\tt DISTINCT} statements or with the help of user-defined functions. Afterwards the data is often grouped. Then the cycle either starts all over again e.g. with additional data being joined or otherwise the resulting data set is written to the output with a {\tt STORE} statement. Of course this structure may be altered depending on the problem.     
 
-Every line is ended by a semicolon. The pig compiler starts building a logical and physical execution plan once a STORE or debug command is evaluated.
+Every line is terminated by a semicolon. The pig compiler starts building a logical and physical execution plan once a {\tt STORE} or debug command is evaluated.
                    
-Every data set has a schema determining the structure of the data. These schemas may be defined explicitly by the user in Pig Latin or in a UDF or implicitly by Pig. Certain attributes in a data set are to be accessed either via the corresponding name in the schema or via position.
-As already stated Pig has the same possibilities as native Java Hadoop due to the use of user-defined functions (UDF \ref{pigUdf}). These functions may implement custom load or store functionality or manipulate per element or over a whole data set. It is also possible to use UDFs for filtering by deciding if certain data shall be in the resulting data set or not.
-The development of UDFs is well documented but requires noteworthy more effort than just writing Pig Latin. Especially defining own schemas can be a hard-to-debug task. 
+Every data set has a schema determining the structure of its data. These schemas may be defined explicitly by the user in Pig Latin or in an UDF or determined implicitly by Pig. A certain attribute in a data set are to be accessed either via the corresponding name in the schema or via its position.
+As already stated Pig has the same possibilities as native Java Hadoop due to the use of user-defined functions. These functions may implement custom load or store functionality or manipulate data per element or over a whole data set. It is also possible to use UDFs for filtering by deciding if certain data shall be in the resulting data set.
+The development of UDFs is well documented but requires noteworthy more effort than just writing Pig Latin. Especially defining own schemas can be a hard-to-debug task. The development of UDFs offers common means of Java debugging.
 
-Pig Latin scripts are best to debugged with the {\tt ILLUSTRATE}, {\tt DESCRIBE} and {\tt DUMP} statements, which are giving access to the schema and the data of the data sets. Unfortunately schemas are only to be viewed one level deep and therefore deeper nested data structures are to be debugged more difficult.
+Pig Latin scripts are best to debugged with the {\tt ILLUSTRATE}, {\tt DESCRIBE} and {\tt DUMP} statements, which give access to the schema and the data. Unfortunately schemas are only to be viewed one level deep and therefore deeper nested data structures are to be debugged more difficult.

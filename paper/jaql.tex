@@ -1,44 +1,25 @@
 \section{Jaql}
 
-Jaql~\cite{jaqlWebsite} is a high-level query language for the JavaScript Object Notation (JSON).
+Jaql~\cite{jaqlWebsite} is a high-level scripting language for the JavaScript Object Notation (JSON).
 It is able to run on Hadoop and break most requests down to Map/Reduce tasks.
-Jaql heavily borrowed from SQL, XQuery, LISP, Pig Latin, JavaScript and Unix Pipes.~\cite{jaqlOverview}
+Jaql heavily borrowes from SQL, XQuery, LISP, Pig Latin, JavaScript and Unix Pipes.~\cite{jaqlOverview}
 
 Developed mainly inside IBM and with a quite mailinglist Jaql currently faces
-a serious lack of documentation and community. The documentation found online in
-most cases is outdated and incomplete. In addition to this, Jaql was undergoing
-major changes in the time of writing.
+a serious lack of documentation and community. The documentation found online
+is outdated and incomplete in most cases. In addition, Jaql was undergoing
+major changes in the time of writing this paper.
 
-Even though available, there is no need to write in a strict map/reduce pattern in
-Jaql. At the point of execution (i.e. the end of a query statement) Jaql transforms the
+Even though available, there is no need to write in a strict Map/Reduce pattern. At the point of execution (i.e. the end of a query statement) Jaql transforms the
 parsed statement into another, equivalent but optimised statement. This step is
 comparable to a query optimiser in modern database management systems. The optimised
 query can in turn be transformed back to Jaql code, which is useful for debugging.
 
-Jaql can be extended with user-defined functions, that can be written either in Java or
+Jaql can be extended with user-defined functions, written either in Java or
 in Jaql itself. However, it is not possible to use Jaql as a general-purpose programming
 language, as it is not Turing-complete: It lacks both recursion and a universal loop
-function. A short attempt to implement a Y combinator in Jaql only led to system crashes.
-Since this is none of Jaql's goals, it is unlikely to change in the near future.
+function.
 
-The current Jaql implementation features three modes to run in: In stand-alone mode hadoop
-is not used at all and the jobs are not split in map and reduce tasks. When using Jaql
-with Hadoop you can either use a mini-cluster, which is managed by Jaql and runs all tasks
-in the same process (with one thread per map/reduce task), or you can use an existing,
-currently running hadoop cluster in which the node you run Jaql on takes part in.
-
-One of the main features of Jaql is the ability to read from and write to different
-storage types, currently the local file system, the Hadoop Distributed File System,
-HBase (Hadoop's BigTable equivalent) and HTTP. Since Jaql is based on JSON, reading
-from HTTP allows easy integration of web services like Wikipedia or Flickr, that offer
-a JSON API.
-
-\begin{lstlisting}[language=jaql,caption=A sample Jaql query,float,label=jaqlsample]
-$source = "http://server/api.php?format=json\&query=foo";
-read(http($source)) 
-  -> transform each $entry $entry["name"]
-  -> write(hdfs("output.dat"));
-\end{lstlisting}
-
-A typical Jaql request can be seen in listing \ref{jaqlsample}. Jaql ships with an
-interactive shell (read-eval-print loop). 
+The current Jaql implementation features three modes to run in: In stand-alone mode Hadoop
+is not used at all and the jobs are not split in Map/Reduce tasks. When using Jaql
+with Hadoop a so-called mini-cluster can be used, which is managed by Jaql and runs all tasks
+on one computer in the same process (with one thread per Map/Reduce task), or an external hadoop cluster.
