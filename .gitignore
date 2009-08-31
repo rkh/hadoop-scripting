@@ -15,4 +15,5 @@
 .*.swp
 *.backup
 *.out
-benchmarks/wordcount.png
+benchmarks/*.png
+benchmarks/*.eps
