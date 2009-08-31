@@ -1,5 +1,4 @@
 \section{Programming Markov Chain with Jaql} 
-\lstinputlisting[language=jaql,caption=Markov Chain in Jaql,label=jaqlmrkv]{../jaql/markov_sql.jaql}
 
 Our final Jaql script for generating a Markov Chain index can be seen in listing \ref{jaqlmrkv}. In line 42 the script will call the self function \lstinline[language=jaql]!$markov!, defined in line 19--25, on an array of strings. Each string represents a line from the input file. All lines will be replaced with the results of \lstinline[language=jaql]!$markovLine! in line 21, which are tuples with four words each. Then identical tuples will be aggregated into an SQL expression, containing the tuple itself and number of appearances.       
 
