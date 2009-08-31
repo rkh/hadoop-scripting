@@ -4,7 +4,7 @@ Jaql~\cite{jaqlWebsite} is a high-level scripting language for the JavaScript Ob
 It is able to run on Hadoop and break most requests down to Map/Reduce tasks.
 Jaql heavily borrowes from SQL, XQuery, LISP, Pig Latin, JavaScript and Unix Pipes.~\cite{jaqlOverview}
 
-Developed mainly inside IBM and with a quite mailinglist Jaql currently faces
+Developed mainly inside IBM and with a quiet mailinglist Jaql currently faces
 a serious lack of documentation and community. The documentation found online
 is outdated and incomplete in most cases. In addition, Jaql was undergoing
 major changes in the time of writing this paper.
@@ -22,4 +22,4 @@ function.
 The current Jaql implementation features three modes to run in: In stand-alone mode Hadoop
 is not used at all and the jobs are not split in Map/Reduce tasks. When using Jaql
 with Hadoop a so-called mini-cluster can be used, which is managed by Jaql and runs all tasks
-on one computer in the same process (with one thread per Map/Reduce task), or an external hadoop cluster.
+on one computer in the same process (with one thread per Map/Reduce task). The last option is running Jaql on a traditional, external Hadoop cluster.
