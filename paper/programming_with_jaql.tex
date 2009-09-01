@@ -1,17 +1,17 @@
 \section{Programming with Jaql}
 
-One of the main features of Jaql is the ability to read from and write to different
-storage types, currently the local file system, the Hadoop Distributed File System,
-HBase and HTTP. Since Jaql is based on JSON, reading
-from HTTP allows easy integration of web services like Wikipedia or Flickr, that offer
-a JSON API.
-
-\begin{lstlisting}[language=jaql,caption=A sample Jaql query,float,label=jaqlsample]
+\begin{lstlisting}[language=jaql,caption=A sample Jaql query,label=jaqlsample]
 $source = "http://server/api.php?format=json\&query=foo";
 read(http($source)) 
   -> transform each $["name"]
   -> write(hdfs("output.dat"));
 \end{lstlisting}
+
+One of the main features of Jaql is the ability to read from and write to different
+storage types, currently the local file system, the Hadoop Distributed File System,
+HBase and HTTP. Since Jaql is based on JSON, reading
+from HTTP allows easy integration of web services like Wikipedia or Flickr, that offer
+a JSON API.
 
 A typical Jaql request can be seen in listing \ref{jaqlsample}. Jaql ships with an
 interactive shell (read-eval-print loop). 
