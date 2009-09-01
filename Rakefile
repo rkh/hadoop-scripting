@@ -106,5 +106,5 @@ end
 
 desc "Generate zip file"
 task :zip do
-  sh "git clean -fdx && git clean -fdX && zip hadoop-scripting.zip *"
+  sh "git clean -fdx && git clean -fdX && zip hadoop-scripting.zip $(find .)"
 end
