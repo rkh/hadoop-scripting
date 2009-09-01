@@ -1,3 +1,0 @@
-
-http://incubator.apache.org/projects/pig.html
-Oreilly Hadoop Buch

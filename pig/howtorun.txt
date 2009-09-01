@@ -1,5 +1,8 @@
-rm grouped_clean; rm just_loaded; java -Xmx2048m -cp $PIGDIR/pig.jar org.apache.pig.Main -x local splitsuc.pig
+Run in localmode Pig Standalone:
+java -Xmx2048m -cp $PIGDIR/pig.jar org.apache.pig.Main -x local splitsuc.pig
 
+
+Generate UDF splitsuc.jar:
 javac -cp pig.jar SPLITSUC.java
 cd ..
 jar -cf splitsuc.jar splitsuc
